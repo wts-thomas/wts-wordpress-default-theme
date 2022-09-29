@@ -83,15 +83,15 @@ add_action( 'admin_menu', 'remove_menus' );
 function remove_menus(){
   
 /*  	remove_menu_page( 'index.php' );                  //Dashboard 	*/
-/* 		remove_menu_page( 'edit.php' );                   //Posts		*/
+/* 	remove_menu_page( 'edit.php' );                   //Posts		*/
 /*  	remove_menu_page( 'upload.php' );                 //Media 		*/
 /*  	remove_menu_page( 'edit.php?post_type=page' );    //Pages 		*/
-/* 		remove_menu_page( 'edit-comments.php' );          //Comments	*/
+/* 	remove_menu_page( 'edit-comments.php' );          //Comments	*/
 /*  	remove_menu_page( 'themes.php' );                 //Appearance 	*/
-/* 		remove_menu_page( 'plugins.php' );                //Plugins		*/
-/* 		remove_menu_page( 'users.php' );                  //Users		*/
+/* 	remove_menu_page( 'plugins.php' );                //Plugins		*/
+/* 	remove_menu_page( 'users.php' );                  //Users		*/
 /*		remove_menu_page( 'tools.php' );                  //Tools		*/
-/* 		remove_menu_page( 'options-general.php' );        //Settings 	*/
+/* 	remove_menu_page( 'options-general.php' );        //Settings 	*/
   
 }
 
@@ -175,6 +175,7 @@ function eg_register_menus() {
   		array(
 			'header_nav_menu' => __( 'Header Menu' ),
 			'footer_nav_menu' => __( 'Footer Menu' ),
+         'footer_alt_menu' => __( 'Alternate Menu' ),
     	)
 	);
 }

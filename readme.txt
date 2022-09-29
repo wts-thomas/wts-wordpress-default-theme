@@ -19,4 +19,7 @@ This theme resets the WordPress environment and prepares it for smooth operation
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
 = 1.0.1 - 09-29-2022 =
+* Added function for an alternate menu to be created via Appearance/Menus
+
+= 1.0.0 - 09-29-2022 =
 * Initial Public Release
