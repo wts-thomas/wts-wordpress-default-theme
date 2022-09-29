@@ -1,0 +1,132 @@
+/*
+Theme Name: WTS Elementor, Default
+Theme URI: https://wtsks.com
+Author: WTS
+Author URI: https://wtsks.com
+Description: A plain-vanilla & lightweight theme for Elementor page builder
+Version: 1.0.0
+Requires at least: 5.2
+Tested up to: 6.0
+Requires PHP: 5.6
+License: GNU General Public License v3 or later.
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: Custom layout
+Text Domain: wts-elementor-default
+*/
+
+
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+
+html {
+	-webkit-text-size-adjust: 100%;
+	font-size: 100%;
+	height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	-webkit-font-smoothing: antialiased;
+}
+a img, img a {
+	text-decoration: none; 
+	border: 0px;
+	border-style: none;
+}
+a[href^="tel"]{
+    color: inherit;
+    text-decoration: none;
+}
+button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"],
+button:not(:disabled),
+[type="submit"]:not(:disabled),
+[type="button"]:not(:disabled) {
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+textarea {
+	outline: none;
+	overflow: auto;
+}
+
+body .fullscreen,
+body .fullheight {
+   height: 100%;
+   height: 100vh;
+   height: calc(var(--vh, 1vh) * 100);
+}
+
+/* ------------------------------------------------------------
+	FONTS
+/* ------------------------------------------------------------ */
+
+
+
+/* ------------------------------------------------------------
+	TYPESTYLES
+/* ------------------------------------------------------------ */
+
+h1 {
+
+}
+h2 {
+
+}
+h3 {
+
+}
+h4 {
+
+}
+h5 {
+
+}
+h6 {
+
+}
+p {
+
+}
+
+.page-content .elementor-element h4 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+
+/* ------------------------------------------------------------
+	BUTTONS - GLOBAL
+/* ------------------------------------------------------------ */
+
+
+#gform_submit_button_1 {
+    border: none;
+}
+
+
+/* ------------------------------------------------------------
+	CONTAINERS AND WRAPPERS
+/* ------------------------------------------------------------ */
+
+
+
+
+
+/* ------------------------------------------------------------
+	TEMPLATES & PAGE(S)
+/* ------------------------------------------------------------ */
+
+
+
+
+
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
