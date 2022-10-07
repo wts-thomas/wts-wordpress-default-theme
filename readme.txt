@@ -3,8 +3,8 @@
 Contributors: Thomas Rainer
 Requires at least: 4.7
 Tested up to: 5.9
-Stable tag: 1.1.0
-Version: 1.1.0
+Stable tag: 1.1.2
+Version: 1.1.2
 Requires PHP: 7.4
 JQuery: 3.6.1
 License: GNU General Public License v3 or later
