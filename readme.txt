@@ -1,11 +1,12 @@
 === WTS Elementor ===
 
-Contributors: Thomas
+Contributors: Thomas Rainer
 Requires at least: 4.7
 Tested up to: 5.9
-Stable tag: 1.0.1
-Version: 1.0.1
+Stable tag: 1.1.0
+Version: 1.1.0
 Requires PHP: 7.4
+JQuery: 3.6.1
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,8 +19,15 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 1.1.0 - 10-07-2022 =
+* Margin adjustments (top and bottom) for h tags.
+* Function to remove Gutenberg Block CSS Library
+* Functions to remove Gutenberg Block elements
+* Updated JQuery to 3.6.1
+* Lazy Load function and styles added
+
 = 1.0.1 - 09-29-2022 =
 * Added function for an alternate menu to be created via Appearance/Menus
 
 = 1.0.0 - 09-29-2022 =
-* Initial Public Release
+* Initial Release
