@@ -100,9 +100,6 @@ function eos_dequeue_gutenberg() {
 }
 add_action( 'wp_print_styles', 'eos_dequeue_gutenberg' );
 
-/* Turns off Elementor Lazyload since we're using our own below */
-add_filter( 'wp_lazy_loading_enabled', '__return_false' );
-
 /*_____________________________________________________________________*/
 
 // Remove Admin features from Dashboard. They are still available but hidden
@@ -151,8 +148,8 @@ function add_theme_enqueues() {
 	wp_deregister_script('jquery');
 	wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js', array(), '3.6.1', false);
 	wp_enqueue_script( 'viewportHeight', get_template_directory_uri() . '/js/viewportHeight.js#asyncload', array ( 'jquery' ), 1, true);
-   wp_enqueue_script( 'lazyload', get_template_directory_uri() . '/js/lazy-load.js#asyncload', array ( 'jquery' ), 1, true);
-   wp_enqueue_script( 'lazyload-min', get_template_directory_uri() . '/js/lazyload.min.js#asyncload', array ( 'jquery' ), 1, true);
+   // wp_enqueue_script( 'lazyload', get_template_directory_uri() . '/js/lazy-load.js#asyncload', array ( 'jquery' ), 1, true);
+   wp_enqueue_script( 'lazyload-min', get_template_directory_uri() . '/js/lazyload.min.js', array ( 'jquery' ), 1, false);
 }
 add_action( 'wp_enqueue_scripts', 'add_theme_enqueues' );
 
@@ -266,10 +263,9 @@ function wts_lazy_load_init() {
 
    //actions + filters
    add_filter('template_redirect', 'wts_lazy_load', -99999);
-   add_action('wp_enqueue_scripts', 'wts_enqueue_lazy_load');
    add_action('wp_footer', 'wts_print_lazy_load_js', PHP_INT_MAX);
    add_action('wp_head', 'wts_print_lazy_load_css', PHP_INT_MAX);
-   add_filter('wp_lazy_loading_enabled', '__return_false');
+   add_filter('wp_lazy_loading_enabled', '__return_false' );
    add_filter('wp_get_attachment_image_attributes', function($attr) {
       unset($attr['loading']);
         return $attr;
