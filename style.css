@@ -4,7 +4,7 @@ Theme URI: https://wtsks.com
 Author: WTS
 Author URI: https://wtsks.com
 Description: A plain-vanilla & lightweight theme for Elementor page builder
-Version: 1.1.1
+Version: 1.1.2
 Requires at least: 5.2
 Tested up to: 6.0
 Requires PHP: 5.6
@@ -112,16 +112,6 @@ body .fullheight {
 	LAZY LOAD
 /* ------------------------------------------------------------ */
 
-/* img.attachment-large {
-   -webkit-transition: opacity 500ms ease-in-out 100ms;
-   -moz-transition: opacity 500ms ease-in-out 100ms;
-   -o-transition: opacity 500ms ease-in-out 100ms;
-   transition: opacity 500ms ease-in-out 100ms;
-}
-img.attachment-large {
-	opacity: 1;
-	width: auto;
-} */
 
 
 /* ------------------------------------------------------------ */
