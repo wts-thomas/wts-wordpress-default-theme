@@ -2,9 +2,9 @@
 
 Contributors: Thomas Rainer
 Requires at least: 4.7
-Tested up to: 5.9
-Stable tag: 1.1.2
-Version: 1.1.2
+Tested up to: 6.0
+Stable tag: 1.3.0
+Version: 1.3.0
 Requires PHP: 7.4
 JQuery: 3.6.1
 License: GNU General Public License v3 or later
@@ -18,6 +18,14 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 1.3.0 - 10-12-2022 =
+* Added Support Contact Card to Admin Dashboard
+* Added Function to hide Admin Edit to Tables if using the Tablepress plugin
+* Minor Refactoring and Organizations to Functions
+
+= 1.2.0 - 10-11-2022 =
+* Remove Plugin menus from users' dashboard excluding WTS users
 
 = 1.1.2 - 10-07-2022 =
 * Removed a commented out Enqueued script for lazy load

@@ -1,5 +1,7 @@
 <?php
 
+// This is what checks the Github Repository for the latest version 
+// and gives the update notice to the Theme installed in Wordpress.
 require 'plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'https://github.com/wts-thomas/wts-wordpress-theme-default/',
@@ -55,11 +57,11 @@ remove_action( 'admin_print_styles', 'print_emoji_styles' );
 function remove_jquery_migrate( $scripts ) {
    if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
         $script = $scripts->registered['jquery'];
-   if ( $script->deps ) { 
-// Check whether the script has any dependencies
-        $script->deps = array_diff( $script->deps, array( 'jquery-migrate' ) );
- }
- }
+      if ( $script->deps ) { 
+      // Check whether the script has any dependencies
+         $script->deps = array_diff( $script->deps, array( 'jquery-migrate' ) );
+      }
+   }
  }
 add_action( 'wp_default_scripts', 'remove_jquery_migrate' );
 
@@ -100,27 +102,30 @@ function eos_dequeue_gutenberg() {
 }
 add_action( 'wp_print_styles', 'eos_dequeue_gutenberg' );
 
-/*_____________________________________________________________________*/
 
-// Remove Admin features from Dashboard. They are still available but hidden
-add_action( 'admin_menu', 'remove_menus' );
-function remove_menus(){
-  
-/*  	remove_menu_page( 'index.php' );                  //Dashboard 	*/
-/* 	remove_menu_page( 'edit.php' );                   //Posts		*/
-/*  	remove_menu_page( 'upload.php' );                 //Media 		*/
-/*  	remove_menu_page( 'edit.php?post_type=page' );    //Pages 		*/
-/* 	remove_menu_page( 'edit-comments.php' );          //Comments	*/
-/*  	remove_menu_page( 'themes.php' );                 //Appearance 	*/
-/* 	remove_menu_page( 'plugins.php' );                //Plugins		*/
-/* 	remove_menu_page( 'users.php' );                  //Users		*/
-/*		remove_menu_page( 'tools.php' );                  //Tools		*/
-/* 	remove_menu_page( 'options-general.php' );        //Settings 	*/
-  
-}
+/*  ADMIN DASHBOARD LINKS
+________________________________________________________________________*/
 
-/*_____________________________________________________________________*/
-
+// Remove Admin features from Dashboard excluding WTS users
+// for the default installation of plugins
+function wts_remove_menus(){ 
+   $current_user = wp_get_current_user(); 
+   if( !in_array( $current_user->user_email, array('thomas@wtskss.com','tanner@wtsks.com',) ) ){ 
+      /*  	remove_menu_page( 'index.php' );                        //Dashboard 	*/
+      /* 	remove_menu_page( 'edit.php' );                         //Posts		*/
+      /*  	remove_menu_page( 'upload.php' );                       //Media 		*/
+      /*  	remove_menu_page( 'edit.php?post_type=page' );          //Pages 		*/
+      /* 	remove_menu_page( 'edit-comments.php' );                //Comments	*/
+      remove_menu_page( 'themes.php' );                             //Appearance */
+      remove_menu_page( 'plugins.php' );                            //Plugins		*/
+      /* 	remove_menu_page( 'users.php' );                        //Users		*/
+      remove_menu_page( 'tools.php' );                              //Tools		*/
+      remove_menu_page( 'options-general.php' );                    //Settings 	*/
+      remove_menu_page( 'edit.php?post_type=acf-field-group' );     //ACF 	      */
+      remove_menu_page( 'cptui_main_menu' );                        //CPT UI     */
+   } 
+} 
+add_action( 'admin_menu', 'wts_remove_menus', 9999 );
 
 
 /*  ASYNC FUNCTION FOR SCRIPTS - ENQUEUED BELOW
@@ -180,6 +185,8 @@ function cc_mime_types($mimes) {
 }
 add_filter('upload_mimes', 'cc_mime_types');
 
+// NOTE: SVG width and height functions are not required since we're using Elementor and its' SVG upload to media library functions.
+
 
 /*  LOADS ELEMENTOR TO TEMPLATE PAGES
 ________________________________________________________________________*/
@@ -190,6 +197,28 @@ function theme_prefix_register_elementor_locations( $elementor_theme_manager ) {
 }
 add_action( 'elementor/theme/register_locations', 'theme_prefix_register_elementor_locations' );
 
+
+/*  SUPPORT CONATACT CARD
+________________________________________________________________________*/
+
+function custom_dashboard_help() {
+   echo '
+   <div style="text-align:center;">
+       <a href="https://wtsks.com/help/" title="Contact WTS" target="_blank">
+           <img src="'.get_template_directory_uri().'/img/wts-logo_whiteback.png" alt="WTS" style="max-width:100%;width:80%;height:auto;margin:20px auto;">
+       </a>
+   </div>
+   <p>
+      Contact <a href="https://wtsks.com/help/" title="Contact WTS" target="_blank">Contact WTS</a> with questions, troubleshooting, edit for requests or alterations, or misc support you have with your custom built website.
+   </p>
+   <p><strong><a href="https://wtsks.com/help/" title="Contact WTS" target="_blank">Contact WTS</a></strong></p>
+   ';
+}
+function my_custom_dashboard_widgets() {
+   global $wp_meta_boxes;
+   wp_add_dashboard_widget('custom_help_widget', 'Website Support', 'custom_dashboard_help');
+}
+add_action('wp_dashboard_setup', 'my_custom_dashboard_widgets');
 
 
 /*  NAVIGATION
@@ -219,17 +248,6 @@ return $v;
 /*  PLUGIN EDITS
 ________________________________________________________________________*/
 
-
-/*  ACF
-__________________________________________*/
-
-// Removes ACF (custom fields) from the Admin sidebar
-//function remove_acf(){
-//	remove_menu_page( 'edit.php?post_type=acf' ); 
-//}
-//add_action( 'admin_menu', 'remove_acf', 100 );
-
-
 /*  Yoast
 __________________________________________*/
 
@@ -242,6 +260,11 @@ function yoasttobottom() {
 }
 add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
 
+/*  Tablepress
+__________________________________________*/
+
+// Removes the Tablepress Admin links on site
+add_filter( 'tablepress_edit_link_below_table', '__return_false' );
 
 /*  GRAVITY FORMS
 __________________________________________*/
