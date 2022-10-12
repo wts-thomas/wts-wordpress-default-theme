@@ -110,7 +110,7 @@ ________________________________________________________________________*/
 // for the default installation of plugins
 function wts_remove_menus(){ 
    $current_user = wp_get_current_user(); 
-   if( !in_array( $current_user->user_email, array('thomas@wtskss.com','tanner@wtsks.com',) ) ){ 
+   if( !in_array( $current_user->user_email, array('thomas@wtsks.com','tanner@wtsks.com',) ) ){ 
       /*  	remove_menu_page( 'index.php' );                        //Dashboard 	*/
       /* 	remove_menu_page( 'edit.php' );                         //Posts		*/
       /*  	remove_menu_page( 'upload.php' );                       //Media 		*/
