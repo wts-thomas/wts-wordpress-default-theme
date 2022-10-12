@@ -67,7 +67,7 @@ add_action( 'wp_default_scripts', 'remove_jquery_migrate' );
 
 
 /*  Elementor Edits
-__________________________________________*/
+________________________________________________________________________*/
 
 // REMOVE GOOGLE FRONTS - ELEMENTOR
 add_filter( 'elementor/frontend/print_google_fonts', '__return_false' );
@@ -126,6 +126,24 @@ function wts_remove_menus(){
    } 
 } 
 add_action( 'admin_menu', 'wts_remove_menus', 9999 );
+
+
+/*  DASHBOARD META BOXES - DEFAULT SCREEN OPTIONS
+________________________________________________________________________*/
+
+// Hides the other screen option meta boxes.
+// Boxes can be activated at any time by the user via Screen Options dropdown.
+add_filter( 'hidden_meta_boxes', 'custom_hidden_meta_boxes' );
+function custom_hidden_meta_boxes( $hidden ) {
+    $hidden[] = 'e-dashboard-overview';
+    $hidden[] = 'dashboard_site_health';
+    $hidden[] = 'dashboard_right_now';
+    $hidden[] = 'dashboard_activity';
+    $hidden[] = 'dashboard_quick_press';
+    $hidden[] = 'dashboard_primary';
+    $hidden[] = 'rg_forms_dashboard';
+    return $hidden;
+}
 
 
 /*  ASYNC FUNCTION FOR SCRIPTS - ENQUEUED BELOW
@@ -214,11 +232,11 @@ function custom_dashboard_help() {
    <p><strong><a href="https://wtsks.com/help/" title="Contact WTS" target="_blank">Contact WTS</a></strong></p>
    ';
 }
-function my_custom_dashboard_widgets() {
+function wts_custom_dashboard_widgets() {
    global $wp_meta_boxes;
    wp_add_dashboard_widget('custom_help_widget', 'Website Support', 'custom_dashboard_help');
 }
-add_action('wp_dashboard_setup', 'my_custom_dashboard_widgets');
+add_action('wp_dashboard_setup', 'wts_custom_dashboard_widgets');
 
 
 /*  NAVIGATION
