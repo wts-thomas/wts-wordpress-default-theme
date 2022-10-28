@@ -3,8 +3,8 @@
 Contributors: Thomas Rainer
 Requires at least: 4.7
 Tested up to: 6.0
-Stable tag: 1.3.2
-Version: 1.3.2
+Stable tag: 1.3.3
+Version: 1.3.3
 Requires PHP: 7.4
 JQuery: 3.6.1
 License: GNU General Public License v3 or later
@@ -19,8 +19,12 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 1.3.3 - 10-28-2022 =
+* Added a btn-block class to make Buttons, display: block; instead of inline-block
+
 = 1.3.2 - 10-27-2022 =
-* Removed custom Lazy Load functions in favor a more lightweight option (lazyload is not included in this verion - currently working on solution)
+* Removed custom Lazy Load functions in favor a more lightweight option coming soon 
+* Note: lazyload is not included in this verion - currently working on solution
 
 = 1.3.1 - 10-12-2022 =
 * Hides Dashboard Screen Option Meta Boxes to show WTS Support card by default
