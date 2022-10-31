@@ -21,6 +21,7 @@ Screenshot's images & icons are licensed under: Creative Commons (CC0), https://
 
 = 1.3.4 - 10-31-2022 =
 * Fixed missing Featured Image option to Page(s) and Post(s)
+* Adjusted paragraph default settings (p) to 0em for margin-block-start and margin-block-end
 
 = 1.3.3 - 10-28-2022 =
 * Added a btn-block class to make Buttons, display: block; instead of inline-block

@@ -73,6 +73,11 @@ body .fullheight {
 	TYPESTYLES
 /* ------------------------------------------------------------ */
 
+.page-content .elementor-widget-text-editor p {
+   margin-block-start: 0em;
+   margin-block-end: 0em;
+}
+
 .page-content .elementor-element h1,
 .page-content .elementor-element h2,
 .page-content .elementor-element h3,
