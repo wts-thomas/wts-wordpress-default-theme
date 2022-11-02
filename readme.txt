@@ -3,8 +3,8 @@
 Contributors: Thomas Rainer
 Requires at least: 4.7
 Tested up to: 6.0
-Stable tag: 1.3.6
-Version: 1.3.6
+Stable tag: 1.3.7
+Version: 1.3.7
 Requires PHP: 7.4
 JQuery: 3.6.1
 License: GNU General Public License v3 or later
@@ -18,6 +18,12 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 1.3.7 - 11-02-2022 =
+* Revised paragraph margin settings for text widgets
+* Added a horiz-divider class for shadows under horizontal lines
+* Updated style declarations for Full Height
+* Added responsive Tables via the added class ".table-responsive-stack"
 
 = 1.3.6 - 11-01-2022 =
 * Added leading styles to UL's that have a white background. Add the class ".leaders" to the UL
