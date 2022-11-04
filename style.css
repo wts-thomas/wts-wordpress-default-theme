@@ -4,7 +4,7 @@ Theme URI: https://wtsks.com
 Author: WTS
 Author URI: https://wtsks.com
 Description: A plain-vanilla & lightweight theme for Elementor page builder
-Version: 1.3.9
+Version: 1.3.10
 Requires at least: 5.2
 Tested up to: 6.0
 Requires PHP: 7.4
@@ -183,13 +183,13 @@ ul.leaders span + span {
 @media screen and (max-width: 1024px) {
     
    .table-responsive-stack tr {
-   display: -webkit-box;
-   display: -ms-flexbox;
-   display: flex;
-   -webkit-box-orient: horizontal;
-   -webkit-box-direction: normal;
-   -ms-flex-direction: row;
-         flex-direction: row;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
    }
    .table-responsive-stack td,
    .table-responsive-stack th {
@@ -209,9 +209,9 @@ ul.leaders span + span {
        display: block;
    }
   .table-responsive-stack td {
-     float: left;
-     width:100%;
-  }
+      float: left;
+      width:100%;
+   }
   
 }
 
