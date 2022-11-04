@@ -252,6 +252,10 @@ function eg_register_menus() {
 			'header_nav_menu' => __( 'Header Menu' ),
 			'footer_nav_menu' => __( 'Footer Menu' ),
          'footer_alt_menu' => __( 'Alternate Menu' ),
+         'content_altTwo_menu' => __( 'Alternate Menu - 2' ),
+         'content_altThr_menu' => __( 'Alternate Menu - 3' ),
+         'content_altFou_menu' => __( 'Alternate Menu - 4' ),
+         'content_altFiv_menu' => __( 'Alternate Menu - 5' ),
     	)
 	);
 }

@@ -4,7 +4,7 @@ Theme URI: https://wtsks.com
 Author: WTS
 Author URI: https://wtsks.com
 Description: A plain-vanilla & lightweight theme for Elementor page builder
-Version: 1.3.10
+Version: 1.3.11
 Requires at least: 5.2
 Tested up to: 6.0
 Requires PHP: 7.4
@@ -180,6 +180,27 @@ ul.leaders span + span {
 /*	Tables 
 --------------------------------------------------------------- */
 
+.tablepress thead th,
+.tablepress tfoot th {
+	background-color: transparent !important;
+	text-transform: uppercase !important;
+   font-style: bold !important;
+}
+.tablepress .odd td {
+   background-color: rgba(0,0,0,0.05) !important;
+}
+.tablepress.table-responsive-stack.no-lines tr,
+.tablepress.table-responsive-stack.no-lines tbody td {
+	border: none !important;
+}
+.tablepress.table-responsive-stack.vertical-lines tbody td:not(:last-child) {
+	border-top: none;
+   border-right: solid 1px #ddd;
+}
+.tablepress.table-responsive-stack.vertical-lines tbody td:last-child {
+   border-top: none;
+}
+
 @media screen and (max-width: 1024px) {
     
    .table-responsive-stack tr {
@@ -199,22 +220,35 @@ ul.leaders span + span {
    }
    .table-responsive-stack-thead {
        font-weight: bold;
+       text-transform: uppercase;
    }
    .table-responsive-stack tr {
        -webkit-box-orient: vertical;
        -webkit-box-direction: normal;
        -ms-flex-direction: column;
        flex-direction: column;
-       border-bottom: 3px solid #ccc;
        display: block;
    }
   .table-responsive-stack td {
       float: left;
       width:100%;
    }
+   .tablepress tbody tr:first-child td {
+      border-top: 1px solid #ddd !important;
+   }
+   .tablepress.table-responsive-stack.vertical-lines tbody tr:first-child td {
+      border-top: none !important;
+   }
+   .tablepress.table-responsive-stack.vertical-lines tbody td:not(:last-child) {
+      border-top: none;
+      border-right: none;
+   }
+   .tablepress .odd td,
+   .tablepress tr:nth-child(even) {
+		background-color: rgba(0,0,0,0.05) !important;
+	}
   
 }
-
 
 /* ------------------------------------------------------------
 	TEMPLATES & PAGE(S)

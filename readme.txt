@@ -3,8 +3,8 @@
 Contributors: Thomas Rainer
 Requires at least: 4.7
 Tested up to: 6.0
-Stable tag: 1.3.10
-Version: 1.3.10
+Stable tag: 1.3.11
+Version: 1.3.11
 Requires PHP: 7.4
 JQuery: 3.6.1
 License: GNU General Public License v3 or later
@@ -18,6 +18,10 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 1.3.11 - 11-04-2022 =
+* Additional table styles using the classes (.vertical-lines and .no-lines) when used for Tablepress
+* Added abililty to add up to an additional four alternate menus
 
 = 1.3.10 - 11-04-2022 =
 * Added the necessary javascript for Responsive Tables
@@ -36,7 +40,7 @@ Screenshot's images & icons are licensed under: Creative Commons (CC0), https://
 
 = 1.3.6 - 11-01-2022 =
 * Added leading styles to UL's that have a white background. Add the class ".leaders" to the UL
-* Added the .full-height class for div's that need to fill parent containers
+* Added the .full-height class for div's that need to fill parent containers; needed for iPhones
 * Refactored a default declaration for the Elementor class .swiper-slide to line-height: 0
 
 = 1.3.5 - 10-31-2022 =
