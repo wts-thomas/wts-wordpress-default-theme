@@ -22,7 +22,7 @@ $( '.table-responsive-stack' ).each(function() {
    
    
 function flexTable(){
-   if ($(window).width() < 1025) {
+   if ($(window).width() < 961) {
       
    $(".table-responsive-stack").each(function (i) {
       $(this).find(".table-responsive-stack-thead").show();
@@ -30,7 +30,7 @@ function flexTable(){
    });
       
     
-   // window is less than 1025px   
+   // window is less than 961px   
    } else {
       
    $(".table-responsive-stack").each(function (i) {
