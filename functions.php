@@ -104,8 +104,7 @@ add_action( 'wp_print_styles', 'eos_dequeue_gutenberg' );
 
 
 // Add theme support for Featured Images
-add_theme_support('post-thumbnails', array( 'post', 'page', ));
-
+add_theme_support( 'post-thumbnails' );
 
 /*  ADMIN DASHBOARD LINKS
 ________________________________________________________________________*/
