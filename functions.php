@@ -302,12 +302,21 @@ add_filter( 'gform_confirmation_anchor', '__return_true' );
 add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
 
 
-/*  LAZY LOAD
+/*  ACF FIELD - FUNCTIONS
 ________________________________________________________________________*/
 
+// Adds a comma to number field(s)
+// Field names should be consistent accross Real Estate websites
+// Add new filters for additional field names e.g. "price"
+add_filter('acf/format_value/name=price', 'fix_number', 20, 3);
+function fix_number($value, $post_id, $field) {
+  $value = number_format($value);
+  return $value;
+}
 
 
-
+/*  LAZY LOAD
+________________________________________________________________________*/
 
 /* THIS IS THE END                                                       */
 /* --------------------------------------------------------------------- */
