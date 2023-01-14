@@ -307,10 +307,18 @@ ________________________________________________________________________*/
 
 // Adds a comma to number field(s)
 // Field names should be consistent accross Real Estate websites
-// Add new filters for additional field names e.g. "property_listing_price"
-add_filter('acf/format_value/name=property_listing_price', 'fix_number', 20, 3);
-function fix_number($value, $post_id, $field) {
-  $value = number_format($value);
+// Return ACF Number Fields Formatted with Commas on the Frontend
+add_filter('acf/format_value/name=property_listing_price', 'acf_number_comma', 20, 3);
+// add_filter('acf/format_value/name=ANOTHER_ACF_FIELD_NAME', 'acf_number_comma_decimal', 20, 3);
+
+// Without Decimal
+function acf_number_comma($value, $post_id, $field) {
+  $value = number_format(floatval($value));
+  return $value;
+}
+// With Decimal
+function acf_number_comma_decimal($value, $post_id, $field) {
+  $value = number_format(floatval($value), 2);
   return $value;
 }
 

@@ -18,7 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
 
 <!-- ---------------------------------------------------------------------
 Start of body ID
@@ -35,7 +34,7 @@ Start of body ID
 	}
 ?>
 
-<body <?php body_class( $class ); ?>>
+<body <?php body_class(); ?>>
 
 <!-- ---------------------------------------------------------------------
 End of body ID

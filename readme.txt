@@ -19,6 +19,10 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 1.3.17 - 01-14-2023 =
+* Refactored ACF function to show commas and decimals
+* Refactored body class in header.php to remove error in finding $ variable for class
+
 = 1.3.16 - 01-14-2023 =
 * Fixed Critical Error for ACF number field - was using a name in the New Homes Plugin that was causing the conflict
 * Renamed ACF number field name in funcitons to avoid conflict (property_listing_price)
