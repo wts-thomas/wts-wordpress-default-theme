@@ -3,8 +3,8 @@
 Contributors: Thomas Rainer
 Requires at least: 4.7
 Tested up to: 6.1
-Stable tag: 1.3.16
-Version: 1.3.16
+Stable tag: 1.3.18
+Version: 1.4.1
 Requires PHP: 7.4
 JQuery: 3.6.1
 License: GNU General Public License v3 or later
@@ -18,6 +18,18 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 1.4.1 - 03-02-2023 =
+* Added additional performance functions, e.g. Lazy Load, Fix to Width and Height, and loading of Custom Fonts
+* Refactored the functions.php file for improved organization and notes
+
+= 1.4.0 - 02-27-2023 =
+* Added Breadcrumb shortcode [breadcrumbs] and default breadcrumb stylings
+* Breadcrumb styles uses Global Font size and Global Colors e.g. Global Text Font Size, Global Text Color, and Global Primary Color
+
+= 1.3.18 - 02-21-2023 =
+* Created WP Admin Style Sheet to assist with custom styles for Admin Dashboard
+* Added styles to hide unwanted SEO windows in some Admin screens
 
 = 1.3.17 - 01-14-2023 =
 * Refactored ACF function to show commas and decimals
@@ -34,7 +46,7 @@ Screenshot's images & icons are licensed under: Creative Commons (CC0), https://
 * Fixed Theme Support for Featured Images
 
 = 1.3.13 - 11-28-2022 =
-* Removed conficting full-height declaration
+* Removed conflicting full-height declaration
 * Added the class(es) drop shadows for svg's 50%, 75%, and 85% opacity
 
 = 1.3.12 - 11-08-2022 =
