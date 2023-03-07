@@ -3,10 +3,10 @@
 Contributors: Thomas Rainer
 Requires at least: 4.7
 Tested up to: 6.1
-Stable tag: 1.3.18
-Version: 1.4.1
+Stable tag: 1.4
+Version: 1.4.2
 Requires PHP: 7.4
-JQuery: 3.6.1
+JQuery: 3.6.3
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,6 +18,11 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 1.4.2 - 03-07-2023 =
+* Peformance update for Google PageSpeed
+* Updated JQuery to 3.6.3
+* Minor Style sheet adjustments
 
 = 1.4.1 - 03-02-2023 =
 * Added additional performance functions, e.g. Lazy Load, Fix to Width and Height, and loading of Custom Fonts

@@ -4,11 +4,11 @@ Theme URI: https://wtsks.com
 Author: WTS
 Author URI: https://wtsks.com
 Description: A plain-vanilla & lightweight theme for Elementor page builder
-Version: 1.4.1
+Version: 1.4.2
 Requires at least: 5.2
-Tested up to: 6.0
+Tested up to: 6.1
 Requires PHP: 7.4
-JQuery: 3.6.1
+JQuery: 3.6.3
 License: GNU General Public License v3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: Custom layout
@@ -50,6 +50,7 @@ button:not(:disabled),
 [type="button"]:not(:disabled) {
 	cursor: pointer;
 	-webkit-appearance: none;
+   appearance: none;
 }
 textarea {
 	outline: none;
