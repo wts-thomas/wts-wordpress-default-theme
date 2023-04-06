@@ -65,6 +65,6 @@
    --e-a-dark-color-txt-hover: #d5d8dc;
    --e-a-font-family: Roboto, Arial, Helvetica, sans-serif;
    --e-a-transition-hover: all .3s;
-   --e-a-popover-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
-   --e-a-dropdown-shadow: 0 0 3px rgba(0, 0, 0, 0.9)
+   --e-a-popover-shadow: 0 2px 15px rgba(255, 255, 255, 0.5) !important;
+   --e-a-dropdown-shadow: 0 0 3px rgba(255, 255, 255, 0.5) !important;
 }
