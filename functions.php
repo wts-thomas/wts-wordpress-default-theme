@@ -150,9 +150,9 @@ add_filter( 'elementor_pro/custom_fonts/font_display', function( $current_value,
 // THEME SUPPORT FOR FEATURED IMAGES
 add_theme_support( 'post-thumbnails' );
 
-// Overrides Editor Dark Mode Styles for v3.12.1
+// OVERRIDE DARK MODE EDITOR STYLES - SINCE 3.12.0
 function override_elementor_styles_css(){ 
-   wp_register_style('override-editor-styles', get_template_directory_uri().'/editor-dark-mode-overrides.css');
+   wp_register_style('override-editor-styles', get_template_directory_uri().'/styles/editor-darkmode-overrides.css');
    wp_enqueue_style('override-editor-styles');
 } 
 add_action( 'elementor/editor/after_enqueue_scripts', 'override_elementor_styles_css', 9999999 );
