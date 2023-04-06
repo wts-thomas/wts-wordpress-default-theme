@@ -4,7 +4,7 @@ Contributors: Thomas Rainer
 Requires at least: 4.7
 Tested up to: 6.1
 Stable tag: 1.5
-Version: 1.5.0
+Version: 1.5.1
 Requires PHP: 7.4
 JQuery: 3.6.3
 License: GNU General Public License v3 or later
@@ -18,6 +18,9 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 1.5.1 - 04-06-2023 =
+* Refactor and Refine style overrides to Elementor Editor
 
 = 1.5.0 - 04-06-2023 =
 * Overrides Elementor's Dark Mode editor styling; fixes issue of too highcontrast colors
