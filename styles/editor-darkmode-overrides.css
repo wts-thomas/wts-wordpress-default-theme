@@ -16,12 +16,12 @@
    --e-a-color-global: #1dddbf;
    --e-a-bg-default: #111111 !important;
    --e-a-bg-invert: #fff;
-   --e-a-bg-hover: #222325;
+   --e-a-bg-hover: #313233 !important;
    --e-a-bg-active: #2f3032;
    --e-a-bg-active-bold: #3a3f45;
    --e-a-bg-loading: #f9fafa;
    --e-a-bg-logo: #fff;
-   --e-a-bg-primary: #310132;
+   --e-a-bg-primary: #836784 !important;
    --e-a-bg-secondary: #515962;
    --e-a-bg-success: #032317;
    --e-a-bg-info: #0a1a3d;
@@ -67,4 +67,22 @@
    --e-a-transition-hover: all .3s;
    --e-a-popover-shadow: 0 2px 15px rgba(255, 255, 255, 0.5) !important;
    --e-a-dropdown-shadow: 0 0 3px rgba(255, 255, 255, 0.5) !important;
+   --e-p-draggable-color: #f0abfc;
+   --e-p-border-column: #f0abfc;
+   --e-p-border-column-hover: #f3bafd;
+   --e-p-border-column-invert: #0c0d0e;
+   --e-p-border-section: #f0abfc;
+   --e-p-border-section-hover: #f3bafd;
+   --e-p-border-section-invert: #0c0d0e;
+   --e-p-border-con: #f0abfc;
+   --e-p-border-con-hover: #f3bafd;
+   --e-p-border-con-active: #e73cf6;
+   --e-p-border-con-invert: #0c0d0e;
+   --e-p-border-widget: #f0abfc;
+   --e-p-border-widget-hover: #f3bafd;
+   --e-p-border-widget-active: #e73cf6;
+   --e-p-border-widget-invert: #0c0d0e;
+   --e-p-border-global: #5eead4;
+   --e-p-border-global-hover: #1dddbf;
+   --e-p-border-global-invert:#0c0d0e;
 }
