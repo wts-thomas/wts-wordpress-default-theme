@@ -183,22 +183,40 @@ function wts_remove_menus(){
 add_action( 'admin_menu', 'wts_remove_menus', 9999 );
 
 
+/*  REMOVE DASHBOARD META BOXES
+_____________________________________________________________________*/
+
+function remove_dashboard_widgets() {
+   remove_action( 'welcome_panel', 'wp_welcome_panel' );
+   remove_meta_box( 'dashboard_right_now', 'dashboard', 'normal' );
+   remove_meta_box( 'dashboard_activity', 'dashboard', 'normal' );
+   remove_meta_box( 'dashboard_quick_press', 'dashboard', 'side' );
+   remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
+   remove_meta_box( 'dashboard_site_health', 'dashboard', 'normal' );
+   remove_meta_box( 'e-dashboard-overview', 'dashboard', 'normal' );
+}
+add_action( 'wp_dashboard_setup', 'remove_dashboard_widgets' );
+
+
 /*  DASHBOARD META BOXES - DEFAULT SCREEN OPTIONS
 ________________________________________________________________________*/
 
 // Hides the other screen option meta boxes.
 // Boxes can be activated at any time by the user via Screen Options dropdown.
-add_filter( 'hidden_meta_boxes', 'custom_hidden_meta_boxes' );
-function custom_hidden_meta_boxes( $hidden ) {
-    $hidden[] = 'e-dashboard-overview';
-    $hidden[] = 'dashboard_site_health';
-    $hidden[] = 'dashboard_right_now';
-    $hidden[] = 'dashboard_activity';
-    $hidden[] = 'dashboard_quick_press';
-    $hidden[] = 'dashboard_primary';
-    $hidden[] = 'rg_forms_dashboard';
-    return $hidden;
-}
+
+/* NOTE: Disabled the folliwing code in favor of the REMOVE code above. */
+
+// add_filter( 'hidden_meta_boxes', 'custom_hidden_meta_boxes' );
+// function custom_hidden_meta_boxes( $hidden ) {
+//     $hidden[] = 'e-dashboard-overview';
+//     $hidden[] = 'dashboard_site_health';
+//     $hidden[] = 'dashboard_right_now';
+//     $hidden[] = 'dashboard_activity';
+//     $hidden[] = 'dashboard_quick_press';
+//     $hidden[] = 'dashboard_primary';
+//     $hidden[] = 'rg_forms_dashboard';
+//     return $hidden;
+// }
 
 
 /*  ASYNC FUNCTION FOR SCRIPTS - ENQUEUED BELOW

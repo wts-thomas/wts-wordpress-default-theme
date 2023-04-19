@@ -19,6 +19,9 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 1.5.7 - 04-19-2023 =
+* Removes Wordpress' and Elementors Dashboard Widgets
+
 = 1.5.6 - 04-10-2023 =
 * Default Wordpress Image Text Wrap styles, when used with TinyMCE
 
