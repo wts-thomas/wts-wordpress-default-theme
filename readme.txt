@@ -4,7 +4,7 @@ Contributors: Thomas Rainer
 Requires at least: 4.7
 Tested up to: 6.1
 Stable tag: 1.5
-Version: 1.5.6
+Version: 1.5.7
 Requires PHP: 7.4
 JQuery: 3.6.3
 License: GNU General Public License v3 or later
