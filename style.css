@@ -4,7 +4,7 @@ Theme URI: https://wtsks.com
 Author: WTS
 Author URI: https://wtsks.com
 Description: A plain-vanilla & lightweight theme for Elementor page builder
-Version: 1.5.7
+Version: 1.6.0
 Requires at least: 5.2
 Tested up to: 6.1
 Requires PHP: 7.4
@@ -291,13 +291,13 @@ ul.breadcrumbs {
    font-size: var(--e-global-typography-text-font-size);
    line-height: 0.5em;
 	list-style-type: none;
-	padding: 0 1em;
-	margin: 0 1em;
+	padding: 0 1em 0 0;
+	margin: 0;
    text-transform: uppercase;
 }
 ul.breadcrumbs li {
 	display: inline-block;
-	padding: 0.5em;
+	padding: 0.5em 0.5em 0.5em 0em;
 }
 ul.breadcrumbs li a {
 	text-decoration: none;

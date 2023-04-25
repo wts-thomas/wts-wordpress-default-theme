@@ -204,19 +204,12 @@ ________________________________________________________________________*/
 // Hides the other screen option meta boxes.
 // Boxes can be activated at any time by the user via Screen Options dropdown.
 
-/* NOTE: Disabled the folliwing code in favor of the REMOVE code above. */
-
-// add_filter( 'hidden_meta_boxes', 'custom_hidden_meta_boxes' );
-// function custom_hidden_meta_boxes( $hidden ) {
-//     $hidden[] = 'e-dashboard-overview';
-//     $hidden[] = 'dashboard_site_health';
-//     $hidden[] = 'dashboard_right_now';
-//     $hidden[] = 'dashboard_activity';
-//     $hidden[] = 'dashboard_quick_press';
-//     $hidden[] = 'dashboard_primary';
-//     $hidden[] = 'rg_forms_dashboard';
-//     return $hidden;
-// }
+add_filter( 'hidden_meta_boxes', 'custom_hidden_meta_boxes' );
+function custom_hidden_meta_boxes( $hidden ) {
+//  $hidden[] = 'dashboard_primary';
+    $hidden[] = 'rg_forms_dashboard';
+    return $hidden;
+}
 
 
 /*  ASYNC FUNCTION FOR SCRIPTS - ENQUEUED BELOW
@@ -339,6 +332,29 @@ $v = strtolower($v);
 return $v;
 }
 
+
+/*  WIDGETS
+________________________________________________________________________*/
+
+function wtstheme_sidebar() {
+	register_sidebar(
+		array (
+			'name' => __( 'Default Sidebar', 'wts-elementor-default' ),
+			'id' => 'custom_sidebar_01',
+			'description' => __( 'Custom sidebar that can be used with Elementor templates.', 'wts-elementor-default' ),
+			'before_widget' => '<div class="widget-content">',
+			'after_widget' => "</div>",
+		)
+	);
+}
+add_action( 'widgets_init', 'wtstheme_sidebar' );
+
+// Does not show Widget titles on page
+add_filter('widget_title','my_widget_title'); 
+function my_widget_title($t)
+{
+   return null;
+}
 
 /*  PLUGIN EDITS
 ________________________________________________________________________*/
