@@ -1,9 +1,9 @@
 === WTS Elementor ===
 
 Contributors: Thomas Rainer
-Requires at least: 4.7
+Requires at least: 5.0
 Tested up to: 6.1
-Stable tag: 1.5
+Stable tag: 1.6
 Version: 1.6.0
 Requires PHP: 7.4
 JQuery: 3.6.3
@@ -18,6 +18,9 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 1.6.1 - 05-12-2023 =
+* Adjustments to theme name for update checker
 
 = 1.6.0 - 04-25-2023 =
 * Breadcrumb styling adjustments to padding and margin

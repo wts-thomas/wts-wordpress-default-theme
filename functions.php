@@ -6,7 +6,7 @@ require 'plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 	'https://github.com/wts-thomas/wts-wordpress-theme-default/',
 	__FILE__,
-	'wts-elementor'
+	'wts-elementor-default'
 );
 
 //Set the branch that contains the stable release.
