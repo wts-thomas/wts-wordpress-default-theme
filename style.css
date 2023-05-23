@@ -4,7 +4,7 @@ Theme URI: https://wtsks.com
 Author: WTS
 Author URI: https://wtsks.com
 Description: A plain-vanilla & lightweight theme for Elementor page builder
-Version: 1.6.1
+Version: 1.7.0
 Requires at least: 5.2
 Tested up to: 6.1
 Requires PHP: 8.0
@@ -12,7 +12,7 @@ JQuery: 3.6.3
 License: GNU General Public License v3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Tags: Custom layout
-Text Domain: wts-elementor
+Text Domain: wts-elementor-default
 */
 
 
@@ -81,9 +81,9 @@ body .full-height {
 /* ------------------------------------------------------------ */
 
 .page-content p,
-.elementor-location-header p {
+.elementor-location-header p,
+.elementor-widget-container p {
    margin-block-start: 0em;
-   margin-block-end: 0em;
 }
 
 .page-content .elementor-element h1,

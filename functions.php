@@ -150,9 +150,9 @@ add_filter( 'elementor_pro/custom_fonts/font_display', function( $current_value,
 // THEME SUPPORT FOR FEATURED IMAGES
 add_theme_support( 'post-thumbnails' );
 
-// OVERRIDE DARK MODE EDITOR STYLES - SINCE 3.12.0
+// OVERRIDE EDITOR STYLES - SINCE 3.12.0
 function override_elementor_styles_css(){ 
-   wp_register_style('override-editor-styles', get_template_directory_uri().'/styles/editor-darkmode-overrides.css');
+   wp_register_style('override-editor-styles', get_template_directory_uri().'/styles/editor-overrides.css');
    wp_enqueue_style('override-editor-styles');
 } 
 add_action( 'elementor/editor/after_enqueue_scripts', 'override_elementor_styles_css', 9999999 );
@@ -629,9 +629,48 @@ function page_breadcrumbs() {
 add_shortcode('breadcrumbs', 'page_breadcrumbs');
 
 
-/*  LAZY LOAD
+/*  HIDE, EDIT WITH ELEMENTOR BUTTON(S)
 ________________________________________________________________________*/
 
+function add_elementor_checkbox() {
+   // Add a new setting to the "General" WordPress settings page
+   add_settings_field(
+       'show_edit_with_elementor_button',
+       'Hide "Edit with Elementor"',
+       'render_elementor_checkbox',
+       'general'
+   );
+   
+   // Register the new setting
+   register_setting('general', 'show_edit_with_elementor_button');
+}
+
+function render_elementor_checkbox() {
+   // Retrieve the current value of the setting
+   $show_button = get_option('show_edit_with_elementor_button');
+   ?>
+   <input type="checkbox" name="show_edit_with_elementor_button" value="1" <?php checked(1, $show_button); ?>>
+   <?php
+}
+
+function hide_elementor_button() {
+   // Check if the "Show 'Edit with Elementor' button" setting is checked
+   $show_button = get_option('show_edit_with_elementor_button');
+   if ($show_button) {
+       // Hide the "Edit with Elementor" button on the post/page edit screen
+       ?>
+       <style>
+            #elementor-switch-mode-button, #elementor-editor, #wp-admin-bar-elementor_edit_page {
+                display:none;
+            } 
+      </style>
+      <?php
+   }
+}
+
+add_action('admin_init', 'add_elementor_checkbox');
+add_action('admin_head-post.php', 'hide_elementor_button');
+add_action('admin_head-post-new.php', 'hide_elementor_button');
 
 
 /* THIS IS THE END                                                       */

@@ -3,8 +3,8 @@
 Contributors: Thomas Rainer
 Requires at least: 5.0
 Tested up to: 6.1
-Stable tag: 1.6
-Version: 1.6.0
+Stable tag: 1.7
+Version: 1.7.0
 Requires PHP: 7.4
 JQuery: 3.6.3
 License: GNU General Public License v3 or later
@@ -18,6 +18,12 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 1.7.0 - 05-23-2023 =
+* Adds a checkbox in Settings/General that hides the Edit with Elementor buttons and links for Pages/Posts
+* Revised margin start for paragraph widgets
+* Hides AI buttons in Elementor Editor panel
+* Renames Elementor Overrides stylesheet to reflect that not just color edits are being made
 
 = 1.6.1 - 05-12-2023 =
 * Adjustments to theme name for update checker
