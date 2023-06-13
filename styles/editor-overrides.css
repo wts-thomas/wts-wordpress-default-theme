@@ -87,6 +87,8 @@
    --e-p-border-global-invert:#0c0d0e;
 }
 
-#elementor-panel-page-editor .e-ai-button {
+#elementor-panel-page-editor .e-ai-button,
+.elementor-control-fallback .e-ai-button,
+.elementor-control-field .e-ai-button {
    display: none !important;
 }

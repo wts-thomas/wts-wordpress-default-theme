@@ -1,3 +1,9 @@
+/*	Elementor Dashboard Overrides
+--------------------------------------------------------------- */
+.e-ai-button {
+   display: none;
+}
+
 /*	YoastSEO Layout Adjustments 
 --------------------------------------------------------------- */
 
