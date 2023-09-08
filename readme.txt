@@ -4,8 +4,8 @@ Contributors: Thomas Rainer
 Requires at least: 5.0
 Tested up to: 6.1
 Stable tag: 1.7
-Version: 1.7.1
-Requires PHP: 7.4
+Version: 1.8.0
+Requires PHP: 8.0
 JQuery: 3.6.3
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -18,6 +18,12 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 1.8.0 - 09-08-2023 =
+* Site performace optimization functions
+* Added styling for White breadcrumbs
+* CSS declaration for div passthroughs
+* Removed 'width and height fix' function, due to a critical error
 
 = 1.7.1 - 06-08-2023 =
 * Additional styles added to hide AI buttons within page builder

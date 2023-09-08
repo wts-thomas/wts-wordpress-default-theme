@@ -73,37 +73,38 @@ function remove_jquery_migrate( $scripts ) {
  }
 add_action( 'wp_default_scripts', 'remove_jquery_migrate' );
 
-// EXPLICIT FIX TO WIDTH AND HEIGHT
-add_filter( 'the_content', 'add_image_dimensions' );
+// REMOVES DASHICONS FOR NON-LOGGEDIN USERS
+add_action( 'wp_print_styles', 'wtsrets_dequeue_styles' );
+function wtsrets_dequeue_styles() { 
+    if ( ! is_user_logged_in() ) {
+        wp_dequeue_style( 'dashicons' );
+        wp_deregister_style( 'dashicons' );
+    }
+}
 
-function add_image_dimensions( $content ) {
+// DEFERES CSS
+function defer_specific_css_files( $html, $handle ) {
+   $defer_handles = array( 'es-frontend', 'es-select2', 'font-awesome', 'swiper' );
+   
+       if ( in_array( $handle, $defer_handles ) ) {
+           return str_replace( "rel='stylesheet'", "rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"", $html );
+       }
+   
+       return $html;
+   }
+   add_filter( 'style_loader_tag', 'defer_specific_css_files', 10, 2 );
 
-    preg_match_all( '/<img[^>]+>/i', $content, $images);
+// DEFER JS
+function defer_specific_js_files( $tag, $handle ) {
+	$defer_handles = array( 'es-select2', 'es-datetime-picker' );
 
-    if (count($images) < 1)
-        return $content;
-
-    foreach ($images[0] as $image) {
-        preg_match_all( '/(alt|title|src|width|class|id|height)=("[^"]*")/i', $image, $img );
-
-        if ( !in_array( 'src', $img[1] ) )
-            continue;
-
-        if ( !in_array( 'width', $img[1] ) || !in_array( 'height', $img[1] ) ) {
-            $src = $img[2][ array_search('src', $img[1]) ];
-            $alt = in_array( 'alt', $img[1] ) ? ' alt=' . $img[2][ array_search('alt', $img[1]) ] : '';
-            $title = in_array( 'title', $img[1] ) ? ' title=' . $img[2][ array_search('title', $img[1]) ] : '';
-            $class = in_array( 'class', $img[1] ) ? ' class=' . $img[2][ array_search('class', $img[1]) ] : '';
-            $id = in_array( 'id', $img[1] ) ? ' id=' . $img[2][ array_search('id', $img[1]) ] : '';
-            list( $width, $height, $type, $attr ) = getimagesize( str_replace( "\"", "" , $src ) );
-
-            $image_tag = sprintf( '<img src=%s%s%s%s%s width="%d" height="%d" />', $src, $alt, $title, $class, $id, $width, $height );
-            $content = str_replace($image, $image_tag, $content);
-        }
+    if ( in_array( $handle, $defer_handles ) ) {
+        return str_replace( ' src', ' defer src', $tag );
     }
 
-    return $content;
+    return $tag;
 }
+add_filter( 'script_loader_tag', 'defer_specific_js_files', 10, 2 );
 
 
 /*  Elementor Edits
@@ -257,7 +258,8 @@ add_filter( 'clean_url', function( $url )
 
 /*  SVG IMAGES
 ________________________________________________________________________*/
-	
+// NOTE: SVG width and height functions are not required since we're using Elementor and its' SVG upload to media library functions.
+
 /*  Allows the use of SVGs
 	to be uploaded to the Media Library
 __________________________________________*/
@@ -387,6 +389,25 @@ add_filter( 'gform_confirmation_anchor', '__return_true' );
 // Hides top labels if Placeholders are added - dropdown option
 add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
 
+// Blocks non-alphanumeric characters in name fields
+function gf_validate_name( $result, $value, $form, $field ) {
+	if ( $field->type != 'name' ) {
+		return $result;
+	}
+	GFCommon::log_debug( __METHOD__ . '(): Name values => ' . print_r( $value, true ) );
+
+	if ( $result['is_valid'] ) {
+		foreach ( $value as $input ) {
+			if ( ! empty ( $input ) && ! preg_match( '/^[\p{L} ]+$/u', $input ) ) {
+				$result['is_valid'] = false;
+				$result['message'] = '';
+			}
+		}
+	}
+	return $result;
+}
+add_filter( 'gform_field_validation', 'gf_validate_name', 10, 4 );
+
 /*  ACF FIELD - FUNCTIONS
 ________________________________________________________________________*/
 
@@ -406,6 +427,49 @@ function acf_number_comma_decimal($value, $post_id, $field) {
   $value = number_format(floatval($value), 2);
   return $value;
 }
+
+/*  HIDE, EDIT WITH ELEMENTOR BUTTON(S)
+________________________________________________________________________*/
+
+function add_elementor_checkbox() {
+   // Add a new setting to the "General" WordPress settings page
+   add_settings_field(
+       'show_edit_with_elementor_button',
+       'Hide "Edit with Elementor"',
+       'render_elementor_checkbox',
+       'general'
+   );
+   
+   // Register the new setting
+   register_setting('general', 'show_edit_with_elementor_button');
+}
+
+function render_elementor_checkbox() {
+   // Retrieve the current value of the setting
+   $show_button = get_option('show_edit_with_elementor_button');
+   ?>
+   <input type="checkbox" name="show_edit_with_elementor_button" value="1" <?php checked(1, $show_button); ?>>
+   <?php
+}
+
+function hide_elementor_button() {
+   // Check if the "Show 'Edit with Elementor' button" setting is checked
+   $show_button = get_option('show_edit_with_elementor_button');
+   if ($show_button) {
+       // Hide the "Edit with Elementor" button on the post/page edit screen
+       ?>
+       <style>
+            #elementor-switch-mode-button, #elementor-editor, #wp-admin-bar-elementor_edit_page {
+                display:none;
+            } 
+      </style>
+      <?php
+   }
+}
+
+add_action('admin_init', 'add_elementor_checkbox');
+add_action('admin_head-post.php', 'hide_elementor_button');
+add_action('admin_head-post-new.php', 'hide_elementor_button');
 
 /*  BREADCRUMBS
 ________________________________________________________________________*/
@@ -627,50 +691,6 @@ function page_breadcrumbs() {
    }     
 }
 add_shortcode('breadcrumbs', 'page_breadcrumbs');
-
-
-/*  HIDE, EDIT WITH ELEMENTOR BUTTON(S)
-________________________________________________________________________*/
-
-function add_elementor_checkbox() {
-   // Add a new setting to the "General" WordPress settings page
-   add_settings_field(
-       'show_edit_with_elementor_button',
-       'Hide "Edit with Elementor"',
-       'render_elementor_checkbox',
-       'general'
-   );
-   
-   // Register the new setting
-   register_setting('general', 'show_edit_with_elementor_button');
-}
-
-function render_elementor_checkbox() {
-   // Retrieve the current value of the setting
-   $show_button = get_option('show_edit_with_elementor_button');
-   ?>
-   <input type="checkbox" name="show_edit_with_elementor_button" value="1" <?php checked(1, $show_button); ?>>
-   <?php
-}
-
-function hide_elementor_button() {
-   // Check if the "Show 'Edit with Elementor' button" setting is checked
-   $show_button = get_option('show_edit_with_elementor_button');
-   if ($show_button) {
-       // Hide the "Edit with Elementor" button on the post/page edit screen
-       ?>
-       <style>
-            #elementor-switch-mode-button, #elementor-editor, #wp-admin-bar-elementor_edit_page {
-                display:none;
-            } 
-      </style>
-      <?php
-   }
-}
-
-add_action('admin_init', 'add_elementor_checkbox');
-add_action('admin_head-post.php', 'hide_elementor_button');
-add_action('admin_head-post-new.php', 'hide_elementor_button');
 
 
 /* THIS IS THE END                                                       */
