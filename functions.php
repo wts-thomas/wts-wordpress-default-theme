@@ -18,6 +18,9 @@ function my_admin_head() {
 }
 add_action('admin_head', 'my_admin_head');
 
+// Adds the Excerpt meta box for pages.
+add_post_type_support( 'page', 'excerpt' );
+
 /*  Performance & Security Edits
 _____________________________________________________________________*/
 
