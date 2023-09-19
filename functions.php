@@ -21,6 +21,12 @@ add_action('admin_head', 'my_admin_head');
 // Adds the Excerpt meta box for pages.
 add_post_type_support( 'page', 'excerpt' );
 
+// Disables WordPress Autosave
+add_action( 'admin_init', 'disable_autosave' );
+   function disable_autosave() {
+   wp_deregister_script( 'autosave' );
+}
+
 /*  Performance & Security Edits
 _____________________________________________________________________*/
 
