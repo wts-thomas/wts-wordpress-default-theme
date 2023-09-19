@@ -19,6 +19,9 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 1.8.3 - 09-19-2023 =
+* Function to disable autosave
+
 = 1.8.2 - 09-18-2023 =
 * Snap to Container (recognize parent containers only)
 
