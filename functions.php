@@ -172,25 +172,31 @@ add_action( 'elementor/editor/after_enqueue_scripts', 'override_elementor_styles
 ________________________________________________________________________*/
 
 // Remove Admin features from Dashboard excluding WTS users
-// for the default installation of plugins
 function wts_remove_menus(){ 
    $current_user = wp_get_current_user(); 
-   if( !in_array( $current_user->user_email, array('thomas@wtsks.com','tanner@wtsks.com',) ) ){ 
-      /*  	remove_menu_page( 'index.php' );                        //Dashboard 	*/
-      /* 	remove_menu_page( 'edit.php' );                         //Posts		*/
-      /*  	remove_menu_page( 'upload.php' );                       //Media 		*/
-      /*  	remove_menu_page( 'edit.php?post_type=page' );          //Pages 		*/
-      /* 	remove_menu_page( 'edit-comments.php' );                //Comments	*/
-      remove_menu_page( 'themes.php' );                             //Appearance */
-      remove_menu_page( 'plugins.php' );                            //Plugins		*/
-      /* 	remove_menu_page( 'users.php' );                        //Users		*/
-      remove_menu_page( 'tools.php' );                              //Tools		*/
-      remove_menu_page( 'options-general.php' );                    //Settings 	*/
-      remove_menu_page( 'edit.php?post_type=acf-field-group' );     //ACF 	      */
-      remove_menu_page( 'cptui_main_menu' );                        //CPT UI     */
+   // Check if the user's email does NOT have the domain @wtsks.com
+   if( strpos( $current_user->user_email, '@wtsks.com' ) === false ){ 
+      //remove_menu_page( 'index.php' );                             //Dashboard 	         
+      //remove_menu_page( 'edit.php' );                              //Posts		         
+      //remove_menu_page( 'upload.php' );                            //Media 		         
+      //remove_menu_page( 'edit.php?post_type=page' );               //Pages 		         
+      //remove_menu_page( 'edit-comments.php' );                     //Comments	         
+      //remove_menu_page( 'users.php' );                             //Users		         
+      remove_menu_page( 'themes.php' );                              //Appearance            
+      remove_menu_page( 'plugins.php' );                             //Plugins		     
+      remove_menu_page( 'tools.php' );                               //Tools		         
+      remove_menu_page( 'options-general.php' );                     //Settings   	         
+      remove_menu_page( 'edit.php?post_type=acf-field-group' );      //ACF 	         
+      remove_menu_page( 'cptui_main_menu' );                         //CPT UI                
+      remove_menu_page( 'snippets' );                                //Snippets              
+      remove_menu_page( 'elementor' );                               //Elementor             
+      remove_menu_page( 'edit.php?post_type=elementor_library' );    //Elementor Templates   
+      remove_menu_page( 'edit.php?post_type=search-filter-widget' ); //Search & Filter       
+      remove_menu_page( 'dce-features' );                            //Dynamic.ooo           
    } 
 } 
 add_action( 'admin_menu', 'wts_remove_menus', 9999 );
+
 
 
 /*  REMOVE DASHBOARD META BOXES
