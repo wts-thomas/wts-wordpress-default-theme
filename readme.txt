@@ -19,6 +19,9 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 1.8.5 - 11-13-2023 =
+* Fixed email domain typo in function to remove menus
+
 = 1.8.4 - 10-18-2023 =
 * Styles for ordered lists, margin between items
 * Refactored function to hide admin menus non WTS users 
