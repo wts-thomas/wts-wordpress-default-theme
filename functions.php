@@ -27,6 +27,12 @@ add_action( 'admin_init', 'disable_autosave' );
    wp_deregister_script( 'autosave' );
 }
 
+// Adds Title support for pages
+function title_theme_slug_setup() {
+   add_theme_support( 'title-tag' );
+}
+add_action( 'after_setup_theme', 'title_theme_slug_setup' );
+
 /*  Performance & Security Edits
 _____________________________________________________________________*/
 

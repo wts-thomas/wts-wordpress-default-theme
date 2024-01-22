@@ -19,6 +19,9 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 1.8.7 - 01-22-2024 =
+* Adds missing function support for page titles
+
 = 1.8.6 - 01-22-2024 =
 * Removed PHP in header that attempted to get page information for body IDs and class
 
