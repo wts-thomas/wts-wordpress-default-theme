@@ -19,17 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 Start of body ID
 ------------------------------------------------------------------------ -->
 
-<?php
-	$current_page = $post->ID;
-	$parent = 1;
-
-	while($parent) {
-		$page_query = $wpdb->get_row("SELECT post_name, post_parent FROM $wpdb->posts WHERE ID = '$current_page'");
-		$parent = $current_page = $page_query->post_parent;
-		if(!$parent) $parent_name = $page_query->post_name;
-	}
-?>
-
 <body <?php body_class(); ?>>
 
 <!-- ---------------------------------------------------------------------

@@ -4,7 +4,7 @@ Contributors: Thomas Rainer
 Requires at least: 6.0
 Tested up to: 6.3
 Stable tag: 1.8
-Version: 1.8.5
+Version: 1.8.6
 Requires PHP: 8.0
 JQuery: 3.6.3
 License: GNU General Public License v3 or later
@@ -18,6 +18,9 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 1.8.6 - 01-22-2024 =
+* Removed PHP in header that attempted to get page information for body IDs and class
 
 = 1.8.5 - 11-13-2023 =
 * Fixed email domain typo in function to remove menus
