@@ -33,6 +33,21 @@ function title_theme_slug_setup() {
 }
 add_action( 'after_setup_theme', 'title_theme_slug_setup' );
 
+
+/*  Removal of Plugin Version Update Notices
+_____________________________________________________________________*/
+
+// function filter_plugin_updates( $value ) {
+//    if ( isset( $value ) && is_object( $value ) ) {
+//       unset( $value->response[ 'elementor/elementor.php' ] );
+//       unset( $value->response[ 'elementor-pro/elementor-pro.php' ] );
+//   }
+
+//   return $value;
+// }
+// add_filter( 'site_transient_update_plugins', 'filter_plugin_updates' );
+
+
 /*  Performance & Security Edits
 _____________________________________________________________________*/
 
@@ -109,7 +124,7 @@ function defer_specific_css_files( $html, $handle ) {
    }
    add_filter( 'style_loader_tag', 'defer_specific_css_files', 10, 2 );
 
-// DEFER JS
+// DEFERES JS
 function defer_specific_js_files( $tag, $handle ) {
 	$defer_handles = array( 'es-select2', 'es-datetime-picker' );
 
@@ -180,7 +195,7 @@ ________________________________________________________________________*/
 // Remove Admin features from Dashboard excluding WTS users
 function wts_remove_menus(){ 
    $current_user = wp_get_current_user(); 
-   // Check if the user's email does NOT have the domain @wtskss.com
+   // Check if the user's email does NOT have the domain @wtsks.com
    if( strpos( $current_user->user_email, '@wtsks.com' ) === false ){ 
       //remove_menu_page( 'index.php' );                             //Dashboard 	         
       //remove_menu_page( 'edit.php' );                              //Posts		         
@@ -196,7 +211,7 @@ function wts_remove_menus(){
       remove_menu_page( 'cptui_main_menu' );                         //CPT UI                
       remove_menu_page( 'snippets' );                                //Snippets              
       remove_menu_page( 'elementor' );                               //Elementor             
-      remove_menu_page( 'edit.php?post_type=elementor_library' );  //Elementor Templates
+      remove_menu_page( 'edit.php?post_type=elementor_library' );    //Elementor Templates
       remove_submenu_page( 'edit.php?post_type=elementor_library', 'edit.php?post_type=elementor_library&tabs_group=popup&elementor_library_type=popup' );
       remove_menu_page( 'edit.php?post_type=search-filter-widget' ); //Search & Filter       
       remove_menu_page( 'dce-features' );                            //Dynamic.ooo           

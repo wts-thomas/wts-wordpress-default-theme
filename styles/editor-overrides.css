@@ -92,3 +92,14 @@
 .elementor-control-field .e-ai-button {
    display: none !important;
 }
+
+/* HIDES UNWANTED ELEMENTOR MENU ITEMS */
+.elementor-panel-menu-items .elementor-panel-menu-item-apps,
+.elementor-panel-menu-items .elementor-panel-menu-item-notification-center {
+   display: none !important;
+}
+
+/* HIDE UNWANTED ELEMENTOR WINDOWS */
+.elementor-control-media__promotions.elementor-descriptor {
+   display: none !important;
+}
