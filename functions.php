@@ -48,6 +48,24 @@ _____________________________________________________________________*/
 // add_filter( 'site_transient_update_plugins', 'filter_plugin_updates' );
 
 
+/* Removes Specific Admin Notices
+_____________________________________________________________________*/
+
+function hide_specific_admin_notices() {
+   echo '
+   <style>
+       .code-snippets-pro-notice,
+       .go-pro-button,
+       .code-snippets-upgrade-button,
+       #snippet-type-tabs .nav-tab-inactive {
+           display: none !important;
+       }
+   </style>
+   ';
+}
+add_action('admin_head', 'hide_specific_admin_notices');
+
+
 /*  Performance & Security Edits
 _____________________________________________________________________*/
 
