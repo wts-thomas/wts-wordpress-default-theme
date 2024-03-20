@@ -18,6 +18,14 @@ function my_admin_head() {
 }
 add_action('admin_head', 'my_admin_head');
 
+// Custom Admin Scripts
+function wpdocs_enqueue_custom_admin_script() {
+   wp_enqueue_script('adminScripts', get_template_directory_uri() . '/js/adminScripts.js', array('jquery'), '1.0', true);
+}
+// Set a high priority to ensure this runs late
+add_action('admin_enqueue_scripts', 'wpdocs_enqueue_custom_admin_script', 100);
+
+
 // Adds the Excerpt meta box for pages.
 add_post_type_support( 'page', 'excerpt' );
 
@@ -37,15 +45,39 @@ add_action( 'after_setup_theme', 'title_theme_slug_setup' );
 /*  Removal of Plugin Version Update Notices
 _____________________________________________________________________*/
 
-// function filter_plugin_updates( $value ) {
-//    if ( isset( $value ) && is_object( $value ) ) {
-//       unset( $value->response[ 'elementor/elementor.php' ] );
-//       unset( $value->response[ 'elementor-pro/elementor-pro.php' ] );
-//   }
+function wpb_add_update_plugins_option() {
+   // Register a new setting for "hiding plugin updates"
+   register_setting('general', 'hide_plugin_updates', 'absint'); // absint as a sanitization callback function ensures the value is an absolute integer.
 
-//   return $value;
-// }
-// add_filter( 'site_transient_update_plugins', 'filter_plugin_updates' );
+   // Add a new section to the General Settings page for the plugin update toggle
+   add_settings_field(
+       'hide_plugin_updates', // ID
+       'Hide Plugin Updates', // Title
+       'wpb_hide_plugin_updates_callback', // Callback function
+       'general' // Page to display on
+   );
+}
+
+function wpb_hide_plugin_updates_callback() { // The callback function for the checkbox
+   $value = get_option('hide_plugin_updates', 0); // Default to 0 (unchecked)
+   echo '<input type="checkbox" id="hide_plugin_updates" name="hide_plugin_updates" ' . checked(1, $value, false) . ' value="1"> Hide updates for specific plugins';
+}
+
+add_action('admin_init', 'wpb_add_update_plugins_option');
+
+
+function filter_plugin_updates( $value ) {
+   // Check if the option to hide plugin updates is enabled
+   if (get_option('hide_plugin_updates', 0)) {
+       if ( isset( $value ) && is_object( $value ) ) {
+           unset( $value->response[ 'elementor/elementor.php' ] );
+           unset( $value->response[ 'elementor-pro/elementor-pro.php' ] );
+       }
+   }
+
+   return $value;
+}
+add_filter( 'site_transient_update_plugins', 'filter_plugin_updates' );
 
 
 /* Removes Specific Admin Notices
@@ -57,7 +89,15 @@ function hide_specific_admin_notices() {
        .code-snippets-pro-notice,
        .go-pro-button,
        .code-snippets-upgrade-button,
-       #snippet-type-tabs .nav-tab-inactive {
+       .cptui-new .wdspromos,
+       .yoast-seo-premium-upgrade,
+       .wp-mail-smtp-sidebar-upgrade-pro,
+       .wp-mail-smtp-pro,
+       #snippet-type-tabs .nav-tab-inactive,
+       .e-admin-top-bar__secondary-area-buttons,
+       #yoast-seo-settings .xl\:yst-fixed.xl\:yst-right-8,
+       a[title="Upgrade to Code Snippets Pro"],
+       .pro a[aria-label="Upgrade to WP Mail SMTP Pro"] {
            display: none !important;
        }
    </style>
@@ -292,7 +332,7 @@ function add_theme_enqueues() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 	wp_deregister_script('jquery');
 	wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js', array(), '3.6.3', false);
-	wp_enqueue_script( 'viewportHeight', get_template_directory_uri() . '/js/viewportHeight.js#asyncload', array ( 'jquery' ), 1, true);
+   wp_enqueue_script( 'viewportHeight', get_template_directory_uri() . '/js/viewportHeight.js#asyncload', array ( 'jquery' ), 1, true);
    wp_enqueue_script( 'responsiveTables', get_template_directory_uri() . '/js/responsiveTables.js#asyncload', array ( 'jquery' ), 1, true);
    wp_enqueue_script( 'jquery.matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight.js#asyncload', array ( 'jquery' ), 1, false);
 }

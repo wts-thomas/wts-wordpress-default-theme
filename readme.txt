@@ -4,7 +4,7 @@ Contributors: Thomas Rainer
 Requires at least: 6.0
 Tested up to: 6.3
 Stable tag: 1.8
-Version: 2.1.0
+Version: 2.2.0
 Requires PHP: 8.0
 JQuery: 3.6.3
 License: GNU General Public License v3 or later
@@ -19,7 +19,18 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
-= 2.1.0 - 02-23-2024 =
+= 2.2.0 - 03-20-2024 =
+* Hides additional specific Plugin Admin notices with more to come with future version updates
+* Function edits to the adminScripts file
+* Function that adds checkbox to hide/show certain plugin updates
+* Plugin updates hidden as a strategy to ensure an update doesn't break the sites' functionality
+
+= 2.1.1 - 03-19-2024 =
+* Hides additional specific Plugin Admin notices with more to come with future version updates
+* Function to add adminScripts to be used in Admin Dashboard
+* Javascript file used for Admin Dashboard Styles and Edits
+
+= 2.1.0 - 03-15-2024 =
 * Hides specific Plugin Admin notices with more to come with future version updates
 * Function to hide specific plugin update notifications (funciton currently disabled)
 

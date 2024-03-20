@@ -95,11 +95,13 @@
 
 /* HIDES UNWANTED ELEMENTOR MENU ITEMS */
 .elementor-panel-menu-items .elementor-panel-menu-item-apps,
-.elementor-panel-menu-items .elementor-panel-menu-item-notification-center {
+.elementor-panel-menu-items .elementor-panel-menu-item-notification-center,
+#elementor-panel-header-menu-button:after {
    display: none !important;
 }
 
 /* HIDE UNWANTED ELEMENTOR WINDOWS */
-.elementor-control-media__promotions.elementor-descriptor {
+.elementor-control-media__promotions.elementor-descriptor,
+#elementor-panel-elements-wrapper #elementor-panel-get-pro-elements {
    display: none !important;
 }
