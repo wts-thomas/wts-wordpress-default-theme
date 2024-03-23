@@ -4,7 +4,7 @@ Contributors: Thomas Rainer
 Requires at least: 6.0
 Tested up to: 6.3
 Stable tag: 1.8
-Version: 2.2.0
+Version: 2.3.0
 Requires PHP: 8.0
 JQuery: 3.6.3
 License: GNU General Public License v3 or later
@@ -18,6 +18,9 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 2.3.0 - 03-23-2024 =
+* Adds three additonal Default templates-—assists with ACF Field Group locations
 
 = 2.2.0 - 03-20-2024 =
 * Hides additional specific Plugin Admin notices with more to come with future version updates
