@@ -95,6 +95,7 @@ function hide_specific_admin_notices() {
        .wp-mail-smtp-pro,
        #snippet-type-tabs .nav-tab-inactive,
        .e-admin-top-bar__secondary-area-buttons,
+       .elementor-control-notice-type-warning,
        #yoast-seo-settings .xl\:yst-fixed.xl\:yst-right-8,
        a[title="Upgrade to Code Snippets Pro"],
        .pro a[aria-label="Upgrade to WP Mail SMTP Pro"] {
@@ -332,6 +333,7 @@ function add_theme_enqueues() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 	wp_deregister_script('jquery');
 	wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js', array(), '3.6.3', false);
+   wp_enqueue_script( 'my-custom-tinymce', get_template_directory_uri() . '/js/my-custom-tinymce.js', array ( 'jquery' ), 1, true);
    wp_enqueue_script( 'viewportHeight', get_template_directory_uri() . '/js/viewportHeight.js#asyncload', array ( 'jquery' ), 1, true);
    wp_enqueue_script( 'responsiveTables', get_template_directory_uri() . '/js/responsiveTables.js#asyncload', array ( 'jquery' ), 1, true);
    wp_enqueue_script( 'jquery.matchHeight', get_template_directory_uri() . '/js/jquery.matchHeight.js#asyncload', array ( 'jquery' ), 1, false);
@@ -452,6 +454,33 @@ function my_widget_title($t)
 {
    return null;
 }
+
+
+/*  TINY MCE EDITS & CUSTOMIZATIONS
+________________________________________________________________________*/
+
+// Add a custom button to the MCE editor
+function my_custom_mce_buttons($buttons) {
+   array_push($buttons, 'my_custom_class'); // Add your button's identifier
+   return $buttons;
+}
+add_filter('mce_buttons', 'my_custom_mce_buttons');
+
+// Add custom JS to the editor
+function my_custom_mce_js($plugin_array) {
+   $plugin_array['my_custom_script'] = get_template_directory_uri() . '/js/my-custom-tinymce.js'; // Path to your JS file
+   return $plugin_array;
+}
+add_filter('mce_external_plugins', 'my_custom_mce_js');
+
+// Enqueue the JS file
+function my_enqueue_custom_js() {
+   if (is_admin()) {
+       wp_enqueue_script('my_custom_js', get_template_directory_uri() . '/js/my-custom-tinymce.js', array('jquery'), '', true);
+   }
+}
+add_action('admin_enqueue_scripts', 'my_enqueue_custom_js');
+
 
 /*  PLUGIN EDITS
 ________________________________________________________________________*/
