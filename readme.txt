@@ -19,6 +19,9 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 2.4.2 - 05-02-2024 =
+* Adds checkbox to disable function to hide menu items for non wtsks users
+
 = 2.4.1 - 03-26-2024 =
 * Moves the TinyMCE function location to adminScripts file
 

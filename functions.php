@@ -252,32 +252,60 @@ add_action( 'elementor/editor/after_enqueue_scripts', 'override_elementor_styles
 ________________________________________________________________________*/
 
 // Remove Admin features from Dashboard excluding WTS users
-function wts_remove_menus(){ 
-   $current_user = wp_get_current_user(); 
-   // Check if the user's email does NOT have the domain @wtsks.com
-   if( strpos( $current_user->user_email, '@wtsks.com' ) === false ){ 
-      //remove_menu_page( 'index.php' );                             //Dashboard 	         
-      //remove_menu_page( 'edit.php' );                              //Posts		         
-      //remove_menu_page( 'upload.php' );                            //Media 		         
-      //remove_menu_page( 'edit.php?post_type=page' );               //Pages 		         
-      //remove_menu_page( 'edit-comments.php' );                     //Comments	         
-      //remove_menu_page( 'users.php' );                             //Users		         
-      remove_menu_page( 'themes.php' );                              //Appearance            
-      remove_menu_page( 'plugins.php' );                             //Plugins		     
-      remove_menu_page( 'tools.php' );                               //Tools		         
-      remove_menu_page( 'options-general.php' );                     //Settings   	         
-      remove_menu_page( 'edit.php?post_type=acf-field-group' );      //ACF 	         
-      remove_menu_page( 'cptui_main_menu' );                         //CPT UI                
-      remove_menu_page( 'snippets' );                                //Snippets              
-      remove_menu_page( 'elementor' );                               //Elementor             
-      remove_menu_page( 'edit.php?post_type=elementor_library' );    //Elementor Templates
-      remove_submenu_page( 'edit.php?post_type=elementor_library', 'edit.php?post_type=elementor_library&tabs_group=popup&elementor_library_type=popup' );
-      remove_menu_page( 'edit.php?post_type=search-filter-widget' ); //Search & Filter       
-      remove_menu_page( 'dce-features' );                            //Dynamic.ooo           
-   } 
-} 
-add_action( 'admin_menu', 'wts_remove_menus', 9999 );
 
+// Add the checkbox setting to the General settings page
+function wts_add_admin_features_checkbox() {
+   add_settings_field(
+       'wts_disable_admin_features_removal',
+       'Disable Removal of Admin Features',
+       'wts_render_admin_features_checkbox',
+       'general'
+   );
+   
+   register_setting('general', 'wts_disable_admin_features_removal');
+}
+
+function wts_render_admin_features_checkbox() {
+   // Retrieve the current value of the setting
+   $disable_removal = get_option('wts_disable_admin_features_removal');
+   ?>
+   <input type="checkbox" name="wts_disable_admin_features_removal" value="1" <?php checked(1, $disable_removal); ?>>
+   <?php
+}
+
+// Conditionally remove menu items based on the checkbox setting
+function wts_conditional_remove_menus() {
+   $disable_removal = get_option('wts_disable_admin_features_removal');
+
+   // Only execute the menu removal if the checkbox is not checked
+   if (!$disable_removal) {
+       wts_remove_menus();
+   }
+}
+
+// Original function to remove admin features
+function wts_remove_menus() { 
+  $current_user = wp_get_current_user(); 
+  if (strpos($current_user->user_email, '@wtsks.com') === false) { 
+     // List of menu pages to remove
+     remove_menu_page('themes.php');                             
+     remove_menu_page('plugins.php');                           
+     remove_menu_page('tools.php');                             
+     remove_menu_page('options-general.php');                   
+     remove_menu_page('edit.php?post_type=acf-field-group');
+     remove_menu_page('cptui_main_menu');                       
+     remove_menu_page('snippets');                              
+     remove_menu_page('elementor');                             
+     remove_menu_page('edit.php?post_type=elementor_library');
+     remove_submenu_page('edit.php?post_type=elementor_library', 'edit.php?post_type=elementor_library&tabs_group=popup&elementor_library_type=popup');
+     remove_menu_page('edit.php?post_type=search-filter-widget');
+     remove_menu_page('dce-features');
+  }
+}
+
+// Hook the functions to appropriate WordPress actions
+add_action('admin_init', 'wts_add_admin_features_checkbox');
+add_action('admin_menu', 'wts_conditional_remove_menus', 9999);
 
 
 /*  REMOVE DASHBOARD META BOXES
@@ -593,6 +621,12 @@ function hide_elementor_button() {
 add_action('admin_init', 'add_elementor_checkbox');
 add_action('admin_head-post.php', 'hide_elementor_button');
 add_action('admin_head-post-new.php', 'hide_elementor_button');
+
+
+/*  CUSTOM USER PROFILE PHOTOS
+________________________________________________________________________*/
+
+
 
 /*  BREADCRUMBS
 ________________________________________________________________________*/
