@@ -2,9 +2,9 @@
 
 Contributors: Thomas Rainer
 Requires at least: 6.0
-Tested up to: 6.3
-Stable tag: 1.8
-Version: 2.4.2
+Tested up to: 6.5
+Stable tag: 2.6
+Version: 2.6.0
 Requires PHP: 8.0
 JQuery: 3.6.3
 License: GNU General Public License v3 or later
@@ -18,6 +18,21 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 2.6.0 - 07-03-2024 =
+* Elementor Custom Shape Dividers (Slashes)
+
+= 2.5.1 - 07-01-2024 =
+* Elementor QueryID functions (child_pages)
+
+= 2.5.0 - 06-24-2024 =
+* Removes Breadcrumb function and styles in favor of using plugin widgets
+* Removes Elementor Notices and Promotions for AI and Image Optimizer
+* Added additional Menus for using in layouts (additional Header and Footer menus)
+
+= 2.4.3 - 05-21-2024 =
+* Margin bottom for Gravity Form forms
+* Added new Landing Page template
 
 = 2.4.2 - 05-02-2024 =
 * Adds checkbox to disable function to hide menu items for non wtsks users

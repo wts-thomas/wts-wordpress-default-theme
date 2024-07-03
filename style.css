@@ -4,9 +4,9 @@ Theme URI: https://wtsks.com
 Author: WTS
 Author URI: https://wtsks.com
 Description: A plain-vanilla & lightweight theme for Elementor page builder
-Version: 2.4.2
-Requires at least: 5.2
-Tested up to: 6.3
+Version: 2.6.0
+Requires at least: 6.0
+Tested up to: 6.5
 Requires PHP: 8.0
 JQuery: 3.6.3
 License: GNU General Public License v3 or later.
@@ -153,6 +153,13 @@ ul.leaders span + span {
    display: block !important;
 }
 
+/* ------------------------------------------------------------
+	FORMS - GLOBAL
+/* ------------------------------------------------------------ */
+
+.gform-body {
+   margin-bottom: 2em;
+}
 
 /* ------------------------------------------------------------
 	CONTAINERS AND WRAPPERS
@@ -301,58 +308,10 @@ img.aligncenter {
 body:not(.elementor-editor-active) .e-con {
    scroll-snap-align: none;
    scroll-snap-stop: unset;
-   }
-   .elementor > .e-con.e-con.e-con {
+}
+.elementor > .e-con.e-con.e-con {
    scroll-snap-align: start;
    scroll-snap-stop: always;
-   }
-
-/* ------------------------------------------------------------
-	BREADCRUMBS
-/* ------------------------------------------------------------ */
-
-ul.breadcrumbs {
-   font-size: var(--e-global-typography-text-font-size);
-   line-height: 0.5em;
-	list-style-type: none;
-	padding: 0 1em 0 0;
-	margin: 0;
-   text-transform: uppercase;
-}
-ul.breadcrumbs li {
-	display: inline-block;
-	padding: 0.5em 0.5em 0.5em 0em;
-}
-ul.breadcrumbs li a {
-	text-decoration: none;
-	color: var(--e-global-color-text);
-   -webkit-transition: all 0.3s ease;
-   -moz-transition: all 0.3s ease;
-   -ms-transition: all 0.3s ease;
-   -o-transition: all 0.3s ease;
-   transition: all 0.3s ease;
-}
-ul.breadcrumbs li a:hover {
-	color: var(--e-global-color-text);
-}
-ul.breadcrumbs li.separator {
-	color: var(--e-global-color-text);
-   opacity: 0.35;
-}
-ul.breadcrumbs .item-current {
-	color: var(--e-global-color-primary);
-}
-.breadcrumbs_white ul.breadcrumbs li a {
-   color: #fff;
-}
-.breadcrumbs_white ul.breadcrumbs li a:hover {
-	color: rgba(255,255,255,0.5);
-}
-.breadcrumbs_white ul.breadcrumbs li.separator {
-	color: rgba(255,255,255,0.35);
-}
-.breadcrumbs_white ul.breadcrumbs .item-current {
-	color: rgba(255,255,255,0.5);
 }
 
 

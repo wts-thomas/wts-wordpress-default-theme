@@ -89,15 +89,22 @@
 
 #elementor-panel-page-editor .e-ai-button,
 .elementor-control-fallback .e-ai-button,
-.elementor-control-field .e-ai-button {
+.elementor-control-field .e-ai-button,
+#e-image-ai-insert-media {
    display: none !important;
 }
 
 /* HIDES UNWANTED ELEMENTOR MENU ITEMS */
 .elementor-panel-menu-items .elementor-panel-menu-item-apps,
+.elementor-panel-menu-items .elementor-panel-menu-item-notes,
 .elementor-panel-menu-items .elementor-panel-menu-item-notification-center,
 #elementor-panel-header-menu-button:after {
    display: none !important;
+}
+
+/* ELEMENTOR PROMOTIONS */
+.elementor-control-media__promotions {
+	display: none !important;
 }
 
 /* HIDE UNWANTED ELEMENTOR WINDOWS */

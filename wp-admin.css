@@ -1,7 +1,10 @@
 /*	Elementor Dashboard Overrides
 --------------------------------------------------------------- */
-.e-ai-button {
-   display: none;
+.e-ai-button,
+#wp-media-grid #e-image-ai-media-library,
+#e-image-ai-attachment-details,
+#e-image-ai-insert-media {
+   display: none !important;
 }
 
 /*	YoastSEO Layout Adjustments 
