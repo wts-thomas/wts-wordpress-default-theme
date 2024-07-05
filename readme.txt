@@ -4,7 +4,7 @@ Contributors: Thomas Rainer
 Requires at least: 6.0
 Tested up to: 6.5
 Stable tag: 2.6
-Version: 2.6.1
+Version: 2.6.2
 Requires PHP: 8.0
 JQuery: 3.6.3
 License: GNU General Public License v3 or later
@@ -18,6 +18,9 @@ A basic, plain-vanilla, lightweight theme, best suited for building your site us
 This theme resets the WordPress environment and prepares it for smooth operation of Elementor.
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+= 2.6.2 - 07-05-2024 =
+* Adds css for custom shape class 'customShape_slash'
 
 = 2.6.1 - 07-03-2024 =
 * Added Slashes shape in assets folder ... duh, sorry
