@@ -3,7 +3,8 @@
 .e-ai-button,
 #wp-media-grid #e-image-ai-media-library,
 #e-image-ai-attachment-details,
-#e-image-ai-insert-media {
+#e-image-ai-insert-media,
+.elementor-control-notice.elementor-control-notice-type-info {
    display: none !important;
 }
 
