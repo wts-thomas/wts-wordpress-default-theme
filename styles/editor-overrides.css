@@ -1,6 +1,6 @@
 /*	Overrides for Elementor Editor: > 3.12.0 
 --------------------------------------------------------------- */
-:root {
+/* :root {
    color-scheme: dark;
    --e-a-color-white: #fff;
    --e-a-color-black: #000;
@@ -85,7 +85,7 @@
    --e-p-border-global: #5eead4;
    --e-p-border-global-hover: #1dddbf;
    --e-p-border-global-invert:#0c0d0e;
-}
+} */
 
 #elementor-panel-page-editor .e-ai-button,
 .elementor-control-fallback .e-ai-button,

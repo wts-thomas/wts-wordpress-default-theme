@@ -60,7 +60,7 @@ function wpb_add_update_plugins_option() {
 
 function wpb_hide_plugin_updates_callback() { // The callback function for the checkbox
    $value = get_option('hide_plugin_updates', 0); // Default to 0 (unchecked)
-   echo '<input type="checkbox" id="hide_plugin_updates" name="hide_plugin_updates" ' . checked(1, $value, false) . ' value="1"> Hide updates for specific plugins';
+   echo '<input type="checkbox" id="hide_plugin_updates" name="hide_plugin_updates" ' . checked(1, $value, false) . ' value="1"> Hides updates for specific plugins';
 }
 
 add_action('admin_init', 'wpb_add_update_plugins_option');
@@ -261,6 +261,18 @@ function custom_admin_css() {
 add_action('admin_head', 'custom_admin_css', 9999999);
 
 
+/*  HIDES ELEMENTOR PROMOTIONAL NOTICES
+________________________________________________________________________*/
+function hide_elementor_notices() {
+   echo '<style>
+       .e-notice {
+           display: none !important;
+       }
+   </style>';
+}
+add_action('admin_head', 'hide_elementor_notices');
+
+
 /* UNHOOKS AI FROM ELEMENTOR
 ________________________________________________________________________*/
 
@@ -343,7 +355,7 @@ ________________________________________________________________________*/
 function wts_add_admin_features_checkbox() {
    add_settings_field(
        'wts_disable_admin_features_removal',
-       'Disable Removal of Admin Features',
+       'Enable Admin Features',
        'wts_render_admin_features_checkbox',
        'general'
    );
@@ -355,7 +367,7 @@ function wts_render_admin_features_checkbox() {
    // Retrieve the current value of the setting
    $disable_removal = get_option('wts_disable_admin_features_removal');
    ?>
-   <input type="checkbox" name="wts_disable_admin_features_removal" value="1" <?php checked(1, $disable_removal); ?>>
+   <input type="checkbox" name="wts_disable_admin_features_removal" value="1" <?php checked(1, $disable_removal); ?>> Shows Admin Features for non WTS Users
    <?php
 }
 
@@ -673,7 +685,7 @@ function render_elementor_checkbox() {
    // Retrieve the current value of the setting
    $show_button = get_option('show_edit_with_elementor_button');
    ?>
-   <input type="checkbox" name="show_edit_with_elementor_button" value="1" <?php checked(1, $show_button); ?>>
+   <input type="checkbox" name="show_edit_with_elementor_button" value="1" <?php checked(1, $show_button); ?>> Hides the edit with Elementor Buttons and links
    <?php
 }
 
