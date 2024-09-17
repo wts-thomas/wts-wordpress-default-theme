@@ -1,0 +1,183 @@
+
+/* ------------------------------------------------------------
+	SEARCH AND FILTER FORM STYLES
+/* ------------------------------------------------------------ */
+
+/*	General 'formHorizontal' styles
+--------------------------------------------------------------- */
+
+.searchandfilter ul {
+   list-style-type: none;
+   margin-block-start: 0em;
+   margin-block-end: 0em;
+   padding-inline-start: 0px;
+}
+
+.searchandfilter ul li label {
+   margin: 0;
+}
+
+.formHorizontal {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   width: 100%; /* Ensure the container itself takes up full width */
+}
+
+.elementor-widget-search-filter-form .elementor-widget-container,
+.elementor-widget-dce-searchfilter .elementor-widget-container {
+   width: 100%; /* Ensure the container takes full width */
+}
+
+.formHorizontal .searchandfilter > ul {
+   display: flex;
+   flex-wrap: wrap;
+   padding: 0;
+   margin: -0.5em; /* Compensate for the padding in the li elements */
+   list-style: none;
+   width: 100%; /* Make sure the UL takes full width */
+}
+
+.formHorizontal .searchandfilter > ul > li {
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1; /* Allow each list item to grow and fill available space */
+   padding: 0.5em; /* Add padding to create space between items */
+   box-sizing: border-box; /* Ensure padding and border are included in the element's width */
+   min-width: 0; /* Prevent overflowing content from breaking the layout */
+}
+
+.formHorizontal .searchandfilter > ul > li label {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+}
+
+.formHorizontal .searchandfilter > ul > li input[type="text"],
+.formHorizontal .searchandfilter > ul > li select,
+.formHorizontal .searchandfilter > ul > li input[type="submit"] {
+   width: 100%; /* Ensure inputs fill the available width */
+   max-width: 100%;
+   box-sizing: border-box; /* Ensure padding and border are included in the element's width */
+}
+
+/* Two Column Layout */
+.formHorizontal.twoCol .searchandfilter > ul > li {
+   flex-basis: calc(50% - 1em); /* Each item takes up 50% of the width, minus the padding */
+}
+
+/* Three Column Layout */
+.formHorizontal.threeCol .searchandfilter > ul > li {
+   flex-basis: calc(33.333% - 1em); /* Each item takes up 33.333% of the width, minus the padding */
+}
+
+/* Four Column Layout */
+.formHorizontal.fourCol .searchandfilter > ul > li {
+   flex-basis: calc(25% - 1em); /* Each item takes up 25% of the width, minus the padding */
+}
+
+
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+
+
+/*	Container Styling
+--------------------------------------------------------------- */
+
+.search-filter-form {
+   background-color: #f8f9fa;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   display: flex;
+   flex-wrap: wrap;
+   gap: 20px; /* Adjust gap as needed */
+}
+
+/* Input fields */
+.searchandfilter input[type="text"],
+.searchandfilter input[type="number"],
+.searchandfilter select,
+.searchandfilter input[type="date"] {
+   width: 100%;
+   padding: 10px;
+   margin-bottom: 15px;
+   border: 1px solid #ced4da;
+   border-radius: 4px;
+   background-color: #ffffff;
+   font-size: 16px;
+   transition: border-color 0.3s;
+}
+
+.searchandfilter input[type="text"]:focus,
+.searchandfilter input[type="number"]:focus,
+.searchandfilter select:focus,
+.searchandfilter input[type="date"]:focus {
+   border-color: #007bff;
+   outline: none;
+}
+
+/* Checkboxes and radio buttons */
+.searchandfilter input[type="checkbox"],
+.searchandfilter input[type="radio"] {
+   margin-right: 8px;
+}
+
+.searchandfilter label {
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px;
+   font-size: 16px;
+}
+
+/* Buttons */
+.searchandfilter button[type="submit"],
+.searchandfilter input[type="submit"] {
+   background-color: #666;
+   color: #ffffff;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 16px;
+   transition: background-color 0.3s;
+}
+
+.searchandfilter button[type="submit"]:hover,
+.searchandfilter input[type="submit"]:hover {
+   background-color: #ccc;
+}
+
+/* Additional styling for dropdowns */
+.searchandfilter select {
+   appearance: none;
+   background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23ced4da" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9l-7 7-7-7"/></svg>');
+   background-repeat: no-repeat;
+   background-position: right 10px center;
+   background-size: 16px;
+}
+
+/* Layout adjustments for specific divs */
+.searchandfilter > div {
+   flex: 1 1 45%; /* Two columns */
+   box-sizing: border-box;
+}
+
+.searchandfilter .sf-field-post-meta-prod_overall-length,
+.searchandfilter .sf-field-post-meta-prod_cutting-diameter {
+   order: 1;
+}
+
+.searchandfilter .sf-field-post-meta-prod_flute-length,
+.searchandfilter .sf-field-post-meta-prod_cap-length {
+   order: 2;
+}
+
+/* Adjust layout for smaller screens */
+@media (max-width: 768px) {
+   .searchandfilter > div {
+       flex: 1 1 100%; /* Stack fields on smaller screens */
+   }
+}

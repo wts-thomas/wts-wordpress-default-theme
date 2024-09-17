@@ -14,13 +14,19 @@ $myUpdateChecker->setBranch('main');
 
 // Custom Admin Styles
 function my_admin_head() {
-   echo '<link href="'.get_stylesheet_directory_uri().'/wp-admin.css" rel="stylesheet" type="text/css">';
+   // Check if we are in the WordPress admin and the user is logged in
+   if ( is_admin() && is_user_logged_in() ) {
+       echo '<link href="' . get_stylesheet_directory_uri() . '/wp-admin.css" rel="stylesheet" type="text/css">';
+   }
 }
 add_action('admin_head', 'my_admin_head');
 
 // Custom Admin Scripts
 function wpdocs_enqueue_custom_admin_script() {
-   wp_enqueue_script('adminScripts', get_template_directory_uri() . '/js/adminScripts.js', array('jquery'), '1.0', true);
+   // Check if we are in the WordPress admin and the user is logged in
+   if ( is_admin() && is_user_logged_in() ) {
+       wp_enqueue_script('adminScripts', get_template_directory_uri() . '/js/adminScripts.js', array('jquery'), '1.0', true);
+   }
 }
 // Set a high priority to ensure this runs late
 add_action('admin_enqueue_scripts', 'wpdocs_enqueue_custom_admin_script', 100);
@@ -123,7 +129,7 @@ remove_action('wp_head', 'rsd_link');
 add_filter( 'auto_update_plugin', '__return_false' );
 add_filter( 'auto_update_theme', '__return_false' );
 
-// STOPS DEFAULT LAZY LOAD
+// STOPS WORDPRESS' DEFAULT LAZY LOAD
 add_filter( 'wp_lazy_loading_enabled', '__return_false' );
 
 // REMOVE AVATAR DONATION MESSAGE
@@ -241,10 +247,13 @@ add_filter( 'elementor_pro/custom_fonts/font_display', function( $current_value,
 add_theme_support( 'post-thumbnails' );
 
 // OVERRIDE EDITOR STYLES - SINCE 3.12.0
-function override_elementor_styles_css(){ 
-   wp_register_style('override-editor-styles', get_template_directory_uri().'/styles/editor-overrides.css');
-   wp_enqueue_style('override-editor-styles');
-} 
+function override_elementor_styles_css() {
+   // Check if we are in the WordPress admin and the user is logged in
+   if ( is_admin() && is_user_logged_in() ) {
+       wp_register_style('override-editor-styles', get_template_directory_uri().'/styles/editor-overrides.css');
+       wp_enqueue_style('override-editor-styles');
+   }
+}
 add_action( 'elementor/editor/after_enqueue_scripts', 'override_elementor_styles_css', 9999999 );
 
 
@@ -402,6 +411,7 @@ ________________________________________________________________________*/
 
 function add_theme_enqueues() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
+   wp_enqueue_style( 'searchforms-style', get_template_directory_uri() . '/styles/searchforms.css' );
 	wp_deregister_script('jquery');
 	wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js', array(), '3.6.3', false);
    wp_enqueue_script( 'viewportHeight', get_template_directory_uri() . '/js/viewportHeight.js#asyncload', array ( 'jquery' ), 1, true);
