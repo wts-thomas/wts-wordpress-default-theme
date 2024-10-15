@@ -19,9 +19,12 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 2.7.2 - 10-15-2024 =
+* Fixes checkbox to show Gravity Forms for non WTS Users 
+
 = 2.7.1 - 10-15-2024 =
 * Hides additional admin menu items from non WTS users
-* Adds checkbox to show Gravity Forms admin menu for non WTS users
+* Adds checkbox to show Gravity Forms admin menu for non WTS Users
 
 = 2.7.0 - 08-17-2024 =
 * Refactoring of some admin functions and style sheets ensuring they load only when logged in and for admin screens

@@ -352,7 +352,6 @@ function wts_remove_menus() {
      remove_menu_page('edit.php?post_type=elementor_library');
      remove_submenu_page('edit.php?post_type=elementor_library', 'edit.php?post_type=elementor_library&tabs_group=popup&elementor_library_type=popup');
      remove_menu_page('dce-features');
-     remove_menu_page('gf_edit_forms');
      remove_menu_page('search-filter');
      remove_menu_page('wp-mail-smtp');
      remove_menu_page('itsec');
@@ -365,50 +364,44 @@ add_action('admin_init', 'wts_add_admin_features_checkbox');
 add_action('admin_init', 'wts_conditional_remove_menus', 9999);
 
 
-/*  SHOW GRAVITY FORMS ADMIN BUTTON
+/*  HIDE FOR NON WTS USERS WITH CHECKBOX SHOW
 _____________________________________________________________________*/
 
 // Add the checkbox setting to the General settings page for Gravity Forms
-function wts_add_gravity_forms_checkbox() {
+function wts_add_gravity_forms_visibility_checkbox() {
    add_settings_field(
-       'wts_show_gravity_forms',
-       'Gravity Forms Admin Menu',
-       'wts_render_gravity_forms_checkbox',
-       'general'
+       'wts_show_gravity_forms', // Option ID
+       'Gravity Forms Admin Menu', // Label for the checkbox
+       'wts_render_gravity_forms_visibility_checkbox', // Callback to render the checkbox
+       'general' // Settings page (general)
    );
    
-   register_setting('general', 'wts_show_gravity_forms');
+   register_setting('general', 'wts_show_gravity_forms'); // Register the setting
 }
 
-function wts_render_gravity_forms_checkbox() {
+function wts_render_gravity_forms_visibility_checkbox() {
    // Retrieve the current value of the setting
    $show_gravity_forms = get_option('wts_show_gravity_forms');
    ?>
-   <input type="checkbox" name="wts_show_gravity_forms" value="1" <?php checked(1, $show_gravity_forms); ?>> Enable Gravity Forms Admin Menu for non WTS Users
+   <input type="checkbox" name="wts_show_gravity_forms" value="1" <?php checked(1, $show_gravity_forms); ?>> Show Gravity Forms Admin Menu for non WTS Users
    <?php
 }
 
-// Conditionally show or hide Gravity Forms menu based on the checkbox setting
-function wts_conditional_remove_gravity_forms_menu() {
+// Conditionally hide or show Gravity Forms menu based on the checkbox setting
+function wts_conditional_hide_gravity_forms_menu() {
    $show_gravity_forms = get_option('wts_show_gravity_forms');
+   $current_user = wp_get_current_user();
 
-   // Only remove the Gravity Forms menu if the checkbox is not checked
-   if (!$show_gravity_forms) {
-       wts_remove_gravity_forms_menu();
-   }
-}
-
-// Function to remove Gravity Forms admin menu
-function wts_remove_gravity_forms_menu() { 
-   $current_user = wp_get_current_user(); 
-   if (strpos($current_user->user_email, '@wtsks.com') === false) { 
+   // If the user is not from WTS and the checkbox is unchecked, hide Gravity Forms
+   if (strpos($current_user->user_email, '@wtsks.com') === false && !$show_gravity_forms) {
        remove_menu_page('gf_edit_forms'); // Gravity Forms admin menu slug
    }
 }
 
 // Hook the new functions to appropriate WordPress actions
-add_action('admin_init', 'wts_add_gravity_forms_checkbox');
-add_action('admin_init', 'wts_conditional_remove_gravity_forms_menu', 9999);
+add_action('admin_init', 'wts_add_gravity_forms_visibility_checkbox'); // To add the checkbox
+add_action('admin_menu', 'wts_conditional_hide_gravity_forms_menu', 9999); // To hide/show Gravity Forms menu
+
 
 
 /*  REMOVE DASHBOARD META BOXES
