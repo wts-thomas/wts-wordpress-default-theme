@@ -51,29 +51,48 @@ add_action( 'after_setup_theme', 'title_theme_slug_setup' );
 /*  Removal of Plugin Version Update Notices
 _____________________________________________________________________*/
 
+// Function to add settings fields for hiding plugin updates
 function wpb_add_update_plugins_option() {
-   // Register a new setting for "hiding plugin updates"
-   register_setting('general', 'hide_plugin_updates', 'absint'); // absint as a sanitization callback function ensures the value is an absolute integer.
+   // Register a new setting for hiding Elementor plugin updates
+   register_setting('general', 'hide_plugin_updates', 'absint');
+   
+   // Register another setting for hiding updates of a different set of plugins
+   register_setting('general', 'hide_additional_plugin_updates', 'absint');
 
-   // Add a new section to the General Settings page for the plugin update toggle
+   // Add a section for hiding Elementor plugin updates
    add_settings_field(
        'hide_plugin_updates', // ID
-       'Hide Plugin Updates', // Title
+       'Hides Elementor Plugin Updates', // Title
        'wpb_hide_plugin_updates_callback', // Callback function
+       'general' // Page to display on
+   );
+   
+   // Add another section for hiding additional plugins
+   add_settings_field(
+       'hide_additional_plugin_updates', // ID
+       'Hides Dynamic Plugin Updates', // Title
+       'wpb_hide_additional_plugin_updates_callback', // Callback function
        'general' // Page to display on
    );
 }
 
-function wpb_hide_plugin_updates_callback() { // The callback function for the checkbox
+// Callback function for the first checkbox (Elementor plugins)
+function wpb_hide_plugin_updates_callback() {
    $value = get_option('hide_plugin_updates', 0); // Default to 0 (unchecked)
-   echo '<input type="checkbox" id="hide_plugin_updates" name="hide_plugin_updates" ' . checked(1, $value, false) . ' value="1"> Hides updates for specific plugins';
+   echo '<input type="checkbox" id="hide_plugin_updates" name="hide_plugin_updates" ' . checked(1, $value, false) . ' value="1"> Hides Elementor and Elementor Pro updates that require testing before being updated';
+}
+
+// Callback function for the second checkbox (Dynamic and Ultimate Elementor plugins)
+function wpb_hide_additional_plugin_updates_callback() {
+   $value = get_option('hide_additional_plugin_updates', 0); // Default to 0 (unchecked)
+   echo '<input type="checkbox" id="hide_additional_plugin_updates" name="hide_additional_plugin_updates" ' . checked(1, $value, false) . ' value="1"> Hides various dynamic updates that require testing before being updated';
 }
 
 add_action('admin_init', 'wpb_add_update_plugins_option');
 
-
+// Function to filter plugin updates based on the selected options
 function filter_plugin_updates( $value ) {
-   // Check if the option to hide plugin updates is enabled
+   // Check if the Elementor plugin updates should be hidden
    if (get_option('hide_plugin_updates', 0)) {
        if ( isset( $value ) && is_object( $value ) ) {
            unset( $value->response[ 'elementor/elementor.php' ] );
@@ -81,9 +100,18 @@ function filter_plugin_updates( $value ) {
        }
    }
 
+   // Check if the additional plugin updates should be hidden
+   if (get_option('hide_additional_plugin_updates', 0)) {
+       if ( isset( $value ) && is_object( $value ) ) {
+           unset( $value->response[ 'dynamic-content-for-elementor/dynamic-content-for-elementor.php' ] );
+           unset( $value->response[ 'ultimate-elementor/ultimate-elementor.php' ] );
+       }
+   }
+
    return $value;
 }
 add_filter( 'site_transient_update_plugins', 'filter_plugin_updates' );
+
 
 
 /* Removes Specific Admin Notices

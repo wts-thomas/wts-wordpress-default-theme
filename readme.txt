@@ -3,8 +3,8 @@
 Contributors: Thomas Rainer
 Requires at least: 6.0
 Tested up to: 6.5
-Stable tag: 2.6
-Version: 2.7.4
+Stable tag: 2.8
+Version: 2.8.0
 Requires PHP: 8.0
 JQuery: 3.6.3
 License: GNU General Public License v3 or later
@@ -19,8 +19,11 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 2.8.0 - 10-24-2024 =
+* Checkboxes to show and hide sets of plugin updates
+
 = 2.7.4 - 10-21-2024 =
-* Defaylt Passthrough (.clickthrough) for child elements
+* Default Passthrough (.clickthrough) for child elements
 
 = 2.7.3 - 10-21-2024 =
 * Passthrough pointer events only to parent container
