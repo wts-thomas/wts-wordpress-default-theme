@@ -368,7 +368,6 @@ function wts_remove_menus() {
   $current_user = wp_get_current_user(); 
   if (strpos($current_user->user_email, '@wtsks.com') === false) { 
      // List of menu pages to remove
-     remove_menu_page( 'edit-comments.php' );
      remove_menu_page('themes.php');                             
      remove_menu_page('plugins.php');                           
      remove_menu_page('tools.php');                             
@@ -430,6 +429,43 @@ function wts_conditional_hide_gravity_forms_menu() {
 add_action('admin_init', 'wts_add_gravity_forms_visibility_checkbox'); // To add the checkbox
 add_action('admin_menu', 'wts_conditional_hide_gravity_forms_menu', 9999); // To hide/show Gravity Forms menu
 
+
+/*  HIDE COMMENTS MENU WITH CHECKBOX SHOW/HIDE
+_____________________________________________________________________*/
+
+// Add the checkbox setting to the General settings page for Comments
+function wts_add_comments_visibility_checkbox() {
+   add_settings_field(
+       'wts_hide_comments', // Option ID
+       'Comments Admin Menu', // Label for the checkbox
+       'wts_render_comments_visibility_checkbox', // Callback to render the checkbox
+       'general' // Settings page (general)
+   );
+   
+   register_setting('general', 'wts_hide_comments'); // Register the setting
+}
+
+function wts_render_comments_visibility_checkbox() {
+   // Retrieve the current value of the setting
+   $hide_comments = get_option('wts_hide_comments');
+   ?>
+   <input type="checkbox" name="wts_hide_comments" value="1" <?php checked(1, $hide_comments); ?>> Hide Comments Admin Menu for all users
+   <?php
+}
+
+// Conditionally hide or show Comments menu based on the checkbox setting
+function wts_conditional_hide_comments_menu() {
+   $hide_comments = get_option('wts_hide_comments');
+
+   // If the checkbox is checked, hide Comments for all users
+   if ($hide_comments) {
+       remove_menu_page('edit-comments.php'); // Comments admin menu slug
+   }
+}
+
+// Hook the new functions to appropriate WordPress actions
+add_action('admin_init', 'wts_add_comments_visibility_checkbox'); // To add the checkbox
+add_action('admin_menu', 'wts_conditional_hide_comments_menu', 9999); // To hide/show Comments menu
 
 
 /*  REMOVE DASHBOARD META BOXES

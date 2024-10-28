@@ -19,6 +19,10 @@ This theme resets the WordPress environment and prepares it for smooth operation
 
 Screenshot's images & icons are licensed under: Creative Commons (CC0), https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+= 2.8.1 - 10-28-2024 =
+* Checkbox to hide Comments admin menu
+* Updated WTS logo tagline
+
 = 2.8.0 - 10-24-2024 =
 * Checkboxes to show and hide sets of plugin updates
 
