@@ -368,6 +368,7 @@ function wts_remove_menus() {
   $current_user = wp_get_current_user(); 
   if (strpos($current_user->user_email, '@wtsks.com') === false) { 
      // List of menu pages to remove
+     remove_submenu_page('index.php', 'update-core.php');
      remove_menu_page('themes.php');                             
      remove_menu_page('plugins.php');                           
      remove_menu_page('tools.php');                             
@@ -699,34 +700,6 @@ __________________________________________*/
 // instead of having to scroll to message
 add_filter( 'gform_confirmation_anchor', '__return_true' );
 
-// Hides top labels if Placeholders are added - dropdown option
-add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
-
-// Blocks non-alphanumeric characters in name fields
-function gf_validate_name( $result, $value, $form, $field ) {
-	if ( $field->type != 'name' ) {
-		return $result;
-	}
-	GFCommon::log_debug( __METHOD__ . '(): Name values => ' . print_r( $value, true ) );
-
-	if ( $result['is_valid'] ) {
-		foreach ( $value as $input ) {
-			if ( ! empty ( $input ) && ! preg_match( '/^[\p{L} ]+$/u', $input ) ) {
-				$result['is_valid'] = false;
-				$result['message'] = '';
-			}
-		}
-	}
-	return $result;
-}
-add_filter( 'gform_field_validation', 'gf_validate_name', 10, 4 );
-
-
-/*  ACF FIELD - FUNCTIONS
-________________________________________________________________________*/
-
-
-
 
 /*  HIDE, EDIT WITH ELEMENTOR BUTTON(S)
 ________________________________________________________________________*/
@@ -770,6 +743,85 @@ function hide_elementor_button() {
 add_action('admin_init', 'add_elementor_checkbox');
 add_action('admin_head-post.php', 'hide_elementor_button');
 add_action('admin_head-post-new.php', 'hide_elementor_button');
+
+
+/*  HIDE ELEMENTOR NOTICES AND LINKS IN PAGE VIEWS
+________________________________________________________________________*/
+
+function add_elementor_page_view_checkbox() {
+   // Add a new setting to the "General" WordPress settings page
+   add_settings_field(
+       'hide_elementor_notices',
+       'Hide "Edit with Elementor"',
+       'render_elementor_page_view_checkbox',
+       'general'
+   );
+   
+   // Register the new setting
+   register_setting('general', 'hide_elementor_notices');
+}
+
+function render_elementor_page_view_checkbox() {
+   // Retrieve the current value of the setting
+   $hide_notices = get_option('hide_elementor_notices');
+   ?>
+   <input type="checkbox" name="hide_elementor_notices" value="1" <?php checked(1, $hide_notices); ?>> Hides the "Edit with Elementor" name, links, and preceding pipe when viewing all Pages
+   <?php
+}
+
+function hide_elementor_notices_links() {
+   // Check if the "Hide Elementor Notices" setting is checked
+   $hide_notices = get_option('hide_elementor_notices');
+   if ($hide_notices) {
+       // Add JavaScript to hide spans containing "Elementor" and the "Edit with Elementor" span
+       ?>
+       <script>
+           document.addEventListener('DOMContentLoaded', function () {
+               // Hide "Elementor" post state and its preceding em dash
+               const postStateElements = document.querySelectorAll('.post-state');
+               postStateElements.forEach(function (element) {
+                   if (element.textContent.trim() === 'Elementor') {
+                       element.style.display = 'none';
+                       
+                       // Hide the preceding em dash (sibling text node)
+                       const previousSibling = element.previousSibling;
+                       if (previousSibling && previousSibling.nodeType === Node.TEXT_NODE) {
+                           const trimmedText = previousSibling.textContent.trim();
+                           if (trimmedText === '—') {
+                               previousSibling.textContent = ''; // Clear the em dash text
+                           }
+                       }
+                   }
+               });
+
+               // Hide "Edit with Elementor" button and its preceding pipe
+               const editWithElementorElements = document.querySelectorAll('.edit_with_elementor');
+               editWithElementorElements.forEach(function (element) {
+                   element.style.display = 'none';
+                   
+                   // Hide the preceding pipe in the "view" span
+                   const viewSpan = element.previousElementSibling;
+                   if (viewSpan && viewSpan.classList.contains('view')) {
+                       const previousSibling = viewSpan.lastChild;
+                       if (previousSibling && previousSibling.nodeType === Node.TEXT_NODE) {
+                           const trimmedText = previousSibling.textContent.trim();
+                           if (trimmedText === '|') {
+                               previousSibling.textContent = ''; // Clear the pipe text
+                           }
+                       }
+                   }
+               });
+           });
+       </script>
+       <?php
+   }
+}
+
+// Hook the new checkbox to the admin settings
+add_action('admin_init', 'add_elementor_page_view_checkbox');
+
+// Hook to the admin page to apply JavaScript changes
+add_action('admin_head', 'hide_elementor_notices_links');
 
 
 /*  ELEMENTOR QUERIES - USING QUERY ID'S
